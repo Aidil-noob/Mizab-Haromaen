@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+@import '@stisla/style/theme.css';
+@import '@stisla/style/components.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Lora', serif;
+    --color-primary: oklch(0.7474 0.1029 74.98);
+    --color-primary-foreground: oklch(0.5315 0.1121 74.98);
+    --color-surface: oklch(0.94 0.03 80);
+}
+
+@layer components {
+    .navbar {
+        --navbar-bg: oklch(0.7474 0.1029 74.98);
+        --navbar-button-bg-active: oklch(0.5315 0.0877 74.98);
+        --navbar-button-color-active: var(--color-surface);
+    }
+
+    .media {
+        --icon-box-color: #4a3728;
+        --media-border-color: #4a3728;
+    }
+}

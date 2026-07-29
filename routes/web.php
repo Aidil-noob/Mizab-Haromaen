@@ -1,10 +1,45 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PaketController;
+use App\Http\Controllers\TestimoniController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index']);
 
-Route::get('/', [PaketController::class, 'index'])->name('paket');
+Route::get('/dashboard', function () 
+{
+    // Cek email di dalam route
+    if (Auth::user()->email !== 'mizab@admin') {
+        abort(403, 'Akses Ditolak.');
+    }
+
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
+
+
+Route::middleware('auth')
+    ->group(function () 
+    {
+        Route::get('/profile', [ProfileController::class, 'edit'])
+            ->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])
+            ->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])
+            ->name('profile.destroy');
+    }
+);
+
+Route::middleware('auth')
+    ->prefix('admin') // Mengatur URL di browser agar berawalan .../admin/...
+    ->name('admin.') // Mengatur Nama Route di kode agar berawalan admin.
+    ->group(function () 
+    {
+        Route::resource('paket', PaketController::class);
+        Route::resource('testimoni', TestimoniController::class);
+    }
+);
+
+require __DIR__.'/auth.php';

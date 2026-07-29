@@ -1,26 +1,57 @@
-@import 'tailwindcss';
-@import '@stisla/style/theme.css';
-@import '@stisla/style/components.css';
+@import 'tailwindcss'; /* impor modul tailwindcss */
+@import '@stisla/style/theme.css'; /* impor warna default dari stisla */
+@import '@stisla/style/components.css'; /* impor elemen dari stisla */
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Lora', serif;
-    --color-primary: oklch(0.7474 0.1029 74.98);
-    --color-primary-foreground: oklch(0.5315 0.1121 74.98);
-    --color-surface: oklch(0.94 0.03 80);
+    --font-sans: 'Lora', serif; /* font utama */
+    --color-primary: oklch(0.7474 0.1029 74.98); /* warna utama coklat susu */
+    --color-primary-foreground: oklch(0.5315 0.1121 74.98); /* warna teks coklat emas */
+    --color-surface: oklch(0.94 0.03 80); /* warna untuk elemen coklat muda */
+    --color-primary-emphasis: oklch(1 0 0);
 }
 
 @layer components {
     .navbar {
-        --navbar-bg: oklch(0.7474 0.1029 74.98);
-        --navbar-button-bg-active: oklch(0.5315 0.0877 74.98);
-        --navbar-button-color-active: var(--color-surface);
+        --navbar-bg: var(--color-primary); /* latar belakang navbar */
+        --navbar-button-bg-active: var(--color-primary-foreground); /* warna latar belakang tombol navigasi yang dipilih */
+        --navbar-button-color-active: var(--color-primary-emphasis); /* warna teks tombol navigasi yang dipilih */
     }
 
     .media {
-        --icon-box-color: #4a3728;
-        --media-border-color: #4a3728;
+        --icon-box-color: var(--color-primary); /* warna ikon */
+        --media-border-color: var(--color-primary-foreground); /* warna latar belakang ikon */
+    }
+
+    .combobox {
+        --combobox-item-bg-active: var(--color-primary-foreground); /*warna latar belakang item di combobox yang dipilih */
+        --combobox-item-color-active: var(--color-primary); /* warna teks item di combobox yang dipilih */
+        --combobox-item-bg-hover: var(--color-primary-foreground); /* warna latar belakang item di combobox jika disorot kursor */
+        --combobox-item-color-hover: var(--color-primary); /* warna teks item di combobox jika disorot kursor */
+    }
+
+    .separator {
+        --separator-color: var(--color-primary-foreground);
+    }
+
+    .table {
+        --table-head-bg-alt: var(--color-primary-foreground);
+        --table-head-color: var(--color-primary-emphasis);
+        --table-bg-hover: var(--color-primary-foreground);
+        --table-color-hover: var(--color-primary-emphasis);  
+    }
+
+    .checkbox {
+        --checkbox-border-color: var(--color-primary-foreground);
+    }
+
+    .button {
+        --button-color: var(--color-primary-emphasis);
+    }
+
+    .card__header {
+        background-color: var(--color-primary-foreground);
     }
 }

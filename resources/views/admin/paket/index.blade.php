@@ -13,9 +13,21 @@
     <div class="py-8">
         <div class="page container mx-auto px-4">
             @if (session('success'))
-                <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
+                <div class="alert alert--success" x-data="{ open: true }" x-show="open">
+                    <x-lucide-circle-check/>
                     {{ session('success') }}
+                    <div class="alert__action">
+                        <button
+                            type="button"
+                            aria-label="hilangkan notif"
+                            @click="open = false"
+                            class="button button--ghost button--neutral button--icon-only button--success"
+                        >
+                            <x-lucide-x/>
+                        </button>
+                    </div>
                 </div>
+                <script src="//unpkg.com/alpinejs" defer></script>
             @endif
             <div class="card w-full">
                 <div class="table-responsive">            
@@ -37,29 +49,95 @@
                                 <td>{{ $p->nama_hotel_makkah }}</td>
                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                 <td class="text-end">
-                                    <div class="flex flex-wrap items-center justify-end gap-1">             
+                                    <div class="button-group" role="group" aria-label="kelola data"> 
+
+                                        {{-- tombol ubah data --}}
                                         <a 
-                                            href="{{ route('admin.paket.edit', $p) }}"
+                                            href="{{ route('admin.testimoni.edit', $p) }}"
                                             aria-label="ubah"
-                                        >
-                                            <button class="button button--sm button--neutral">
-                                                Ubah
-                                            </button>
+                                            class="button button--sm lg:button--lg button--neutral button--icon-only"
+                                        >    
+                                            <x-lucide-file-pen/>
                                         </a>
-                                        <form
-                                            action="{{ route('admin.paket.destroy', $p) }}"
-                                            onsubmit="return confirm('Anda yakin?\nData yang dihapus tidak dapat dipulihkan')"
+
+                                        {{-- tombol hapus --}}
+                                        <button 
+                                            class="button button--sm button--danger button--icon-only"
+                                            data-stisla-dialog-trigger="konfirmasiHapus-{{ $p->id }}"
                                         >
-                                            @csrf @method('DELETE')
-                                            <button
-                                                type="submit"
-                                                class="button button--sm button--danger"
-                                                aria-label="hapus"
+                                            <x-lucide-trash-2/>
+                                        </button>
+
+                                        {{-- notifikasi untuk konfirmasi hapus data --}}
+                                        <div
+                                            class="dialog dialog--sm" 
+                                            id="konfirmasiHapus-{{ $p->id }}"
+                                            data-stisla-dialog 
+                                            aria-labelledby="label-konfirmasi-hapus-{{ $p->id }}"
+                                            role="alertdialog"
+                                            aria-describedby="deskripsi-konfirmasi-hapus-{{ $p->id }}"
+                                        >
+                                            <div
+                                                class="dialog__backdrop" 
+                                                data-stisla-dialog-dismiss
                                             >
-                                                Hapus
-                                            </button>
-                                        </form>
+                                            </div>
+                                            <div class="dialog__panel">
+                                                <div class="dialog__content">
+                                                    <button 
+                                                        class="dialog__close"
+                                                        data-stisla-dialog-dismiss
+                                                        aria-label="tutup"
+                                                    >
+                                                        <x-lucide-x/>
+                                                    </button>
+                                                    <div class="dialog__body text-center pt-6">
+                                                        <span
+                                                            class="icon-box icon-box--danger icon-box--circle mb-3"
+                                                            style="--icon-box-size: 3rem; --icon-box-icon-size: 1.25rem;"
+                                                        >
+                                                            <x-lucide-trash-2/>
+                                                        </span>
+                                                        <h3 
+                                                            class="dialog__title m-0 mb-1" 
+                                                            id="label-konfirmasi-hapus-{{ $p->id }}"
+                                                        >
+                                                            Hapus data ini?
+                                                        </h3>
+                                                        <p 
+                                                            class="text-muted-foreground m-0" 
+                                                            id="deskripsi-konfirmasi-hapus-{{ $p->id }}"
+                                                        >
+                                                            Data yang dihapus, tidak dapat dipulihkan
+                                                        </p>
+                                                    </div>
+                                                    <div class="dialog__footer justify-center">
+                                                        <button
+                                                            class="button button--ghost button--neutral text-[#0F0B0A]"
+                                                            data-stisla-dialog-dismiss
+                                                        >
+                                                            Batal
+                                                        </button>
+                                                        <button
+                                                            data-stisla-dialog-dismiss 
+                                                            type="submit"
+                                                            class="button button--danger"
+                                                            aria-label="hapus"
+                                                            form="hapus-{{ $p->id }}" {{-- menyambungkan tombol dengan form --}}
+                                                        >
+                                                            Hapus
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <form
+                                        id="hapus-{{ $p->id }}"
+                                        action="{{ route('admin.paket.destroy', $p) }}"
+                                    >
+                                        @csrf @method('DELETE')
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

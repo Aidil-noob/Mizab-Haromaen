@@ -48,22 +48,26 @@
                                 <td scope="row">{{ $t->id }}</td>
                                 <td scope="row">{{ $t->url }}</td>
                                 <td class="text-end">
-                                    <div class="button-group" role="group" aria-label="kelola data">             
+                                    <div class="button-group button-group--lg" role="group" aria-label="kelola data"> 
+
+                                        {{-- tombol ubah data --}}
                                         <a 
                                             href="{{ route('admin.testimoni.edit', $t) }}"
                                             aria-label="ubah"
-                                            class="button button--sm lg:button--lg button--neutral button--icon-only"
+                                            class="button lg:button--lg button--neutral button--icon-only"
                                         >    
                                             <x-lucide-file-pen/>
                                         </a>
 
+                                        {{-- tombol hapus --}}
                                         <button 
-                                            class="button button--sm button--danger button--icon-only"
+                                            class="button button--danger button--icon-only"
                                             data-stisla-dialog-trigger="konfirmasiHapus-{{ $t->id }}"
                                         >
                                             <x-lucide-trash-2/>
                                         </button>
-                                            
+
+                                        {{-- notifikasi untuk konfirmasi hapus data --}}
                                         <div
                                             class="dialog dialog--sm" 
                                             id="konfirmasiHapus-{{ $t->id }}"
@@ -108,7 +112,7 @@
                                                     </div>
                                                     <div class="dialog__footer justify-center">
                                                         <button
-                                                            class="button button--ghost button--neutral"
+                                                            class="button button--ghost button--neutral text-[#0F0B0A]"
                                                             data-stisla-dialog-dismiss
                                                         >
                                                             Batal
@@ -126,10 +130,12 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {{-- lihat video --}}
                                         <a
                                             href="{{ route('admin.testimoni.show', $t) }}"
                                             aria-label="lihat"
-                                            class="button button--sm button--icon-only"
+                                            class="button button--icon-only"
                                             style="--button-tone: oklch(0.65 0.18 55); --button-color: white;"
                                         >
                                             <x-lucide-eye/>

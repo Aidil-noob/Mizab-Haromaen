@@ -22,8 +22,10 @@
     {{-- ikon website --}}
     <link rel="icon" href="storage/ikon/IMG_7539.webp" type="image/x-icon"/>
 
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
+    @env('local')
+        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+        <script>eruda.init();</script>
+    @endenv
 </head>
 <body>
     
@@ -31,8 +33,8 @@
     <nav class="navbar" data-stisla-navbar>
         <a class="navbar__brand">
             <img
-                src="storage/ikon/IMG_7540.webp" 
-                class="h-50 w-50"
+                src="{{ asset('storage/ikon/IMG_7540.webp') }}" 
+                class="h-auto w-50"
             />
         </a> 
         <button
@@ -111,15 +113,12 @@
                 <div class="flex-col flex items-center gap-8 px-1 lg:grid lg:grid-cols-3">
                     @foreach ($paket as $p)
                     <div class="media border-4 w-full lg:flex-col">
+                        
                         {{-- nama paket --}}
                         <div class="font-serif font-extrabold text-2xl text-center shrink-0 w-32">
                             {!! strtoupper(str_replace(' ', '<br>', $p->nama_paket)) !!}
                         </div>
-                        <div
-                            class="separator separator--vertical lg:w-full lg:max-h-[1px]"
-                            role="separator"
-                            aria-orientation="vertical"
-                        ></div>
+            
                         {{-- nama hotel --}}
                         <div class="flex flex-col gap-2 flex-1">
                             <div class="flex items-center gap-3">
@@ -380,5 +379,21 @@
             </div>
         </div>
     </footer>
+    <script>
+        function kirimWa(data) {
+            const pesan = `Assalamualaikum, Saya mau mendaftar Umroh\nPaket: ${data.paket}\nJumlah Orang: ${data.jumlah}\nNama-nama Jamaah:\n${data.nama}`;
+            const url = `https://wa.me/6281161613435?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+    
+        document.getElementById('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            kirimWa({
+                nama: e.target.elements.nama.value,
+                paket: e.target.elements.paket.value,
+                jumlah: e.target.elements.jumlah.value,
+            });
+        });
+    </script>
 </body>
 </html>

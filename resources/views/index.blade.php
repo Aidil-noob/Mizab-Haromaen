@@ -20,7 +20,10 @@
     <script async src="//www.instagram.com/embed.js"></script>
 
     {{-- ikon website --}}
-    <link rel="icon" href="storage/ikon/IMG_7539.png" type="image/x-icon"/>
+    <link rel="icon" href="storage/ikon/IMG_7539.webp" type="image/x-icon"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
 </head>
 <body>
     
@@ -28,7 +31,7 @@
     <nav class="navbar" data-stisla-navbar>
         <a class="navbar__brand">
             <img
-                src="storage/ikon/IMG_7540.png" 
+                src="storage/ikon/IMG_7540.webp" 
                 class="h-50 w-50"
             />
         </a> 
@@ -97,120 +100,147 @@
                 </p>
             </div>
         </header>
-        
+            
         <!--paket umroh -->
-        <section class="page__section" id="paket">
-            <div class="page__section-header justify-center">
-                <div class="page__section-title text-2xl">
-                    Paket Umroh
-                </div>
-            </div>
-            <div class="flex-col flex items-center gap-8 px-4">
-                @foreach ($paket as $p)
-                <div class="media flex items-center border-4 w-full sm:min-w-96 sm:shrink-0 sm:w-auto">
-                    
-                    {{-- nama paket --}}
-                    <div class="font-serif font-extrabold text-2xl text-center shrink-0 w-32">
-                        {!! strtoupper(str_replace(' ', '<br>', $p->nama_paket)) !!}
+            <section class="page__section" id="paket">
+                <div class="page__section-header justify-center">
+                    <div class="page__section-title text-2xl">
+                        Paket Umroh
                     </div>
-                
-                    {{-- nama hotel --}}
-                    <div class="flex flex-col gap-2 flex-1">
-                        <div class="flex items-center gap-3">
-                            <span class="icon-box icon-box--circle shrink-0">
-                                @svg('lucide-hotel', 'h-4 w-4')
-                            </span>
-                            <div>
-                                <span class="font-medium">HOTEL MADINAH:</span>
-                                <span class="font-bold block">{{ $p->nama_hotel_madinah }}</span>
+                </div>
+                <div class="flex-col flex items-center gap-8 px-1 lg:grid lg:grid-cols-3">
+                    @foreach ($paket as $p)
+                    <div class="media border-4 w-full lg:flex-col">
+                        {{-- nama paket --}}
+                        <div class="font-serif font-extrabold text-2xl text-center shrink-0 w-32">
+                            {!! strtoupper(str_replace(' ', '<br>', $p->nama_paket)) !!}
+                        </div>
+                        <div
+                            class="separator separator--vertical lg:w-full lg:max-h-[1px]"
+                            role="separator"
+                            aria-orientation="vertical"
+                        ></div>
+                        {{-- nama hotel --}}
+                        <div class="flex flex-col gap-2 flex-1">
+                            <div class="flex items-center gap-3">
+                                <span class="icon-box icon-box--circle shrink-0">
+                                    @svg('lucide-hotel', 'h-4 w-4')
+                                </span>
+                                <div>
+                                    <span class="font-medium">HOTEL MADINAH:</span>
+                                    <span class="font-bold block">{{ $p->nama_hotel_madinah }}</span>
+                                </div>
+                            </div>         
+                            <div class="flex items-center gap-3">
+                                <span class="icon-box icon-box--circle shrink-0">
+                                    @svg('lucide-hotel', 'h-4 w-4')
+                                </span>
+                                <div>
+                                    <span class="font-medium">HOTEL MAKKAH:</span>
+                                    <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
+                                </div>
                             </div>
-                        </div>         
-                        <div class="flex items-center gap-3">
-                            <span class="icon-box icon-box--circle shrink-0">
-                                @svg('lucide-hotel', 'h-4 w-4')
+                        </div>
+                    
+                        {{-- harga --}}
+                        <div class="flex items-end shrink-0">
+                            <span class="text-sm font-semibold mb-2">Rp</span>
+                            <span class="font-serif font-extrabold text-4xl leading-none">
+                                {{ number_format($p->harga / 1000000, 1) }}
                             </span>
-                            <div>
-                                <span class="font-medium">HOTEL MAKKAH:</span>
-                                <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
+                            <span class="text-sm font-semibold mb-2">JT</span>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </section>
+    
+            {{-- kartu --}}
+            <section class="page__section">
+                <div class="card border-2 border-primary lg:flex-row">
+                    <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
+                        <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
+                        <img 
+                            src="{{ asset('storage/aset/pesawat lion air.webp') }}"
+                            class="h-auto w-80"
+                        />
+                        <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             
+                    </div>
+                    <div class="card__body space-y-4 lg:flex-row">
+                        <div>
+                            <h5 class="card__title text-sm mb-2">Harga Sudah Termasuk:</h5>
+        					<ul class="space-y-1.5 text-sm">
+        						<li class="flex items-center gap-2">
+        							@svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+                            		Tiket Pesawat PP
+        						</li>
+        						<li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Air Zam-zam
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Perlengkapan
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Makan 3x Sehari
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Handling Bandara
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Bagasi 30 Kg
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Visa Umroh
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                    Lounge Bandara
+        		                </li>
+        					</ul>
+                        </div>
+                        <hr class="separator lg:w-px lg:h-full"/>
+                        <div>
+                            <h5 class="card__title text-sm mb-2">Harga Tidak Termasuk:</h5>
+        					<ul class="space-y-1.5 text-sm">
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    Pembuatan Paspor
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    Vaksin Meningitis
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    Vaksin Polio
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    Ziarah Diluar Program
+        		                </li>
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    Kelebihan Bagasi
+        		                </li>
+        					</ul>
+                        </div>
+                        <hr class="separator lg:w-px lg:h-full"/>
+                        <div>
+                            <h4 class="card__title text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
+                            <div class="flex flex-row justify-between items-center lg:flex-col lg:space-y-6">
+                                <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
+                                <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-3xl rounded-xl p-1">7878787573</p>
                             </div>
                         </div>
                     </div>
-                
-                    {{-- harga --}}
-                    <div class="flex items-end gap-1 shrink-0">
-                        <span class="text-sm font-semibold mb-2">Rp</span>
-                        <span class="font-serif font-extrabold text-4xl leading-none">
-                            {{ number_format($p->harga / 1000000, 1) }}
-                        </span>
-                        <span class="text-sm font-semibold mb-2">JT</span>
-                    </div>
                 </div>
-                @endforeach
-            </div>
-        </section>
-
-        {{-- kartu --}}
-        <section class="page__section">
-            <div class="card border-2 border-primary lg:flex-row">
-                <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
-                    <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
-                    <img 
-                        src="storage/aset/pesawat-lion-air.png"
-                        class="h-auto w-80"
-                    />
-                    <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             
-                </div>
-                <div class="card__body space-y-4 lg:flex-row lg:space-x-15">
-                    <div>
-                        <h5 class="card__title text-sm mb-2">Harga Sudah Termasuk:</h5>
-    					<ul class="space-y-1.5 text-sm">
-    						<li class="flex items-center gap-2">
-    							@svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-                        		Tiket Pesawat PP &amp; Visa Umrah
-    						</li>
-    						<li class="flex items-center gap-2">
-    		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-    		                    Air Zam-zam &amp; Lounge Bandara
-    		                </li>
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-    		                    Perlengkapan &amp; Bagasi 30 Kg
-    		                </li>
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-    		                    Makan 3x Sehari
-    		                </li>
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-    		                    Handling Bandara
-    		                </li>
-    					</ul>
-                    </div>
-                    <hr class="separator lg:w-px lg:h-full"/>
-                    <div>
-                        <h5 class="card__title text-sm mb-2">Harga Tidak Termasuk:</h5>
-    					<ul class="space-y-1.5 text-sm">
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-    		                    Pembuatan Paspor
-    		                </li>
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-    		                    Vaksin Meningitis &amp; Polio
-    		                </li>
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-    		                    Ziarah Diluar Program
-    		                </li>
-    		                <li class="flex items-center gap-2">
-    		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-    		                    Kelebihan Bagasi
-    		                </li>
-    					</ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
         <!-- ulasan -->
         <section class="page__section" id="ulasan">
@@ -223,13 +253,12 @@
             {{-- reels instagram --}}
             <div class="flex flex-wrap justify-center mt-6 gap-6">
                 @foreach ($testimoni as $t)
-                <blockquote
-                    class="instagram-media"
-                    data-instgrm-permalink="{{ $t->url }}" 
-                    data-instgrm-version="14"
-                >
-                    <a href="{{ $t->url }}"></a>
-                </blockquote>
+                    <blockquote
+                        class="instagram-media"
+                        data-instgrm-permalink="{{ $t->url }}" 
+                        data-instgrm-version="14"
+                    >
+                    </blockquote>
                 @endforeach
             </div>
         </section>
@@ -278,8 +307,9 @@
                     {{-- input nama nama jamaah --}}
                     <label for="nama" class="field__label">Nama Lengkap Kalian</label>
                     <div class="field__description">
-                        Pisahkan Nama dengan
+                        Pisahkan nama dengan
                         <kbd class="kbd">Enter</kbd> / <kbd class="kbd">⤶</kbd>
+                        jika lebih dari 1 orang
                     </div>
                     <textarea 
                         type="text"
@@ -289,7 +319,8 @@
                         rows="3"
                     ></textarea>
                 </div>
-                <button type="submit" class="button button--primary">Daftar</button>
+                
+                <button type="submit" class="button button--primary">Daftar Sekarang</button>
             </form>
         </section>
     </div>

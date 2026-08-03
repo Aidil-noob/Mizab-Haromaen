@@ -20,7 +20,7 @@
     <script async src="//www.instagram.com/embed.js"></script>
 
     {{-- ikon website --}}
-    <link rel="icon" href="storage/ikon/IMG_7539.webp" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset('ikon/IMG_7539.webp') }}" type="image/x-icon"/>
 
     @env('local')
         <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
@@ -33,7 +33,7 @@
     <nav class="navbar" data-stisla-navbar>
         <a class="navbar__brand">
             <img
-                src="{{ asset('storage/ikon/IMG_7540.webp') }}" 
+                src="{{ asset('ikon/IMG_7540.webp') }}" 
                 class="h-auto w-50"
             />
         </a> 
@@ -64,7 +64,7 @@
         <section class="page__section">
             <div class="card w-full">
                 <img
-                    src="storage/aset/Screenshot_20260715_203004_Instagram Lite.jpg"
+                    src="{{ asset('aset/jamaah_mizab_haromaen.jpg') }}"
                     class="h-80 w-auto object-cover lg:h-100"
                 />
                 <div class="card__overlay">
@@ -88,7 +88,7 @@
                     Selamat Datang di Mizab Haromaen
                 </h1>
                 <img
-                    src="{{ asset('storage/ikon/IMG_7539.webp') }}"
+                    src="{{ asset('ikon/IMG_7539.webp') }}"
                     class="h-auto w-70"
                     alt="Mizab Haromaen"
                 />
@@ -160,7 +160,7 @@
                     <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
                         <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
                         <img 
-                            src="{{ asset('storage/aset/pesawat lion air.webp') }}"
+                            src="{{ asset('aset/pesawat lion air.webp') }}"
                             class="h-auto w-80"
                         />
                         <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             
@@ -233,7 +233,7 @@
                         <div>
                             <h4 class="card__title text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
                             <div class="flex flex-row justify-between items-center lg:flex-col lg:space-y-6">
-                                <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
+                                <img src="{{ asset('aset/bsi.webp') }}" class="h-15 w-auto"/>
                                 <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-3xl rounded-xl p-1">7878787573</p>
                             </div>
                         </div>

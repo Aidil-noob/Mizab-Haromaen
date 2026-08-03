@@ -1,6 +1,6 @@
 <nav class="navbar" data-stisla-navbar>
     <a class="navbar__brand" href="{{ route('dashboard') }}">
-        <img class="h-auto w-50" src="{{ asset('ikon/IMG_7540.webp') }}"/>
+        <img class="h-auto w-50" src="{{ asset('storage/ikon/IMG_7540.webp') }}"/>
     </a>
     <button class="navbar__toggle" data-stisla-navbar-toggle aria-expanded="false">
         <x-lucide-menu/>

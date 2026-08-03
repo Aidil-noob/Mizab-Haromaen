@@ -88,7 +88,7 @@
                     Selamat Datang di Mizab Haromaen
                 </h1>
                 <img
-                    src="{{ asset('ikon/IMG_7539.webp') }}"
+                    src="{{ asset('storage/app/public/ikon/IMG_7539.webp') }}"
                     class="h-auto w-70"
                     alt="Mizab Haromaen"
                 />

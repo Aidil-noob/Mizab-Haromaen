@@ -88,7 +88,7 @@
                     Selamat Datang di Mizab Haromaen
                 </h1>
                 <img
-                    src="{{ asset('storage/app/public/ikon/IMG_7539.webp') }}"
+                    src="{{ asset('storage/ikon/IMG_7539.webp') }}"
                     class="h-auto w-70"
                     alt="Mizab Haromaen"
                 />
@@ -160,7 +160,7 @@
                     <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
                         <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
                         <img 
-                            src="{{ asset('storage/aset/pesawat lion air.webp') }}"
+                            src="{{ asset('storage/aset/pesawat-lion-air.webp') }}"
                             class="h-auto w-80"
                         />
                         <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             

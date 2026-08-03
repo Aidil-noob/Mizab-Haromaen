@@ -104,7 +104,7 @@
         </header>
             
         <!--paket umroh -->
-            <section class="page__section" id="paket">
+        <section class="page__section" id="paket">
                 <div class="page__section-header justify-center">
                     <div class="page__section-title text-2xl">
                         Paket Umroh
@@ -155,7 +155,7 @@
             </section>
     
             {{-- kartu --}}
-            <section class="page__section">
+        {<section class="page__section">
                 <div class="card border-2 border-primary lg:flex-row">
                     <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
                         <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 

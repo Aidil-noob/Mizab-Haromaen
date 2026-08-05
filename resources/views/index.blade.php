@@ -154,92 +154,94 @@
                 </div>
             </section>
     
-            {{-- kartu --}}
+        {{-- kartu --}}
         {<section class="page__section">
-                <div class="card border-2 border-primary lg:flex-row">
-                    <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
-                        <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
-                        <img 
-                            src="{{ asset('storage/aset/pesawat-lion-air.webp') }}"
-                            class="h-auto w-80"
-                        />
-                        <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             
+            <div class="card border-2 border-primary lg:flex-row">
+                <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
+                    <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
+                    <img 
+                        src="{{ asset('storage/aset/pesawat-lion-air.webp') }}"
+                        class="h-auto w-80"
+                    />
+                    <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             
+                </div>
+                <div class="card__body space-y-4 lg:flex-row">
+                    <div>
+                        <h5 class="card__title text-sm mb-2">Harga Sudah Termasuk:</h5>
+        				<ul class="space-y-1.5 text-sm">
+        					<li class="flex items-center gap-2">
+        						@svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+                            	Tiket Pesawat PP
+        					</li>
+        					<li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Air Zam-zam
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Perlengkapan
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Makan 3x Sehari
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Handling Bandara
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Bagasi 30 Kg
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Visa Umroh
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        		                Lounge Bandara
+        		            </li>
+        				</ul>
                     </div>
-                    <div class="card__body space-y-4 lg:flex-row">
-                        <div>
-                            <h5 class="card__title text-sm mb-2">Harga Sudah Termasuk:</h5>
-        					<ul class="space-y-1.5 text-sm">
-        						<li class="flex items-center gap-2">
-        							@svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-                            		Tiket Pesawat PP
-        						</li>
-        						<li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Air Zam-zam
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Perlengkapan
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Makan 3x Sehari
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Handling Bandara
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Bagasi 30 Kg
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Visa Umroh
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                    Lounge Bandara
-        		                </li>
-        					</ul>
-                        </div>
-                        <hr class="separator lg:w-px lg:h-full"/>
-                        <div>
-                            <h5 class="card__title text-sm mb-2">Harga Tidak Termasuk:</h5>
-        					<ul class="space-y-1.5 text-sm">
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                    Pembuatan Paspor
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                    Vaksin Meningitis
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                    Vaksin Polio
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                    Ziarah Diluar Program
-        		                </li>
-        		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                    Kelebihan Bagasi
-        		                </li>
-        					</ul>
-                        </div>
-                        <hr class="separator lg:w-px lg:h-full"/>
-                        <div>
-                            <h4 class="card__title text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
-                            <div class="flex flex-row justify-between items-center lg:flex-col lg:space-y-6">
-                                <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
-                                <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-3xl rounded-xl p-1">7878787573</p>
-                            </div>
+                    <hr class="separator lg:w-px lg:h-full"/>
+                    <div>
+                        <h5 class="card__title text-sm mb-2">Harga Tidak Termasuk:</h5>
+        				<ul class="space-y-1.5 text-sm">
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                Pembuatan Paspor
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                Vaksin Meningitis
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                Vaksin Polio
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                Ziarah Diluar Program
+        		            </li>
+        		            <li class="flex items-center gap-2">
+        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                Kelebihan Bagasi
+        		            </li>
+        				</ul>
+                    </div>
+                    <hr class="separator lg:w-px lg:h-full"/>
+                    <div>
+                        <h4 class="card__title text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
+                        <div class="flex flex-row justify-between items-center lg:flex-col lg:space-y-6">
+                            <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
+                            <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-3xl rounded-xl p-1">
+                                7878787573
+                            </p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
         <!-- ulasan -->
         <section class="page__section" id="ulasan">

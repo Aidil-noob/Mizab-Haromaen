@@ -49,6 +49,7 @@
 
     .button {
         --button-color: var(--color-primary-emphasis);
+        --button-icon-size: 1.25rem;
         @variant lg {
             --button-height: --spacing(13);
             --button-padding-inline: --spacing(5);

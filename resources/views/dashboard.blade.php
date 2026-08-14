@@ -6,12 +6,7 @@
             </h2>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf          
-                <button
-                    type="submit"
-                    class="button button--danger"
-                >
-                    Keluar
-                </button>
+                <x-danger-button>Keluar</x-danger-button>
             </form>
         </div>
     </x-slot>
@@ -41,6 +36,18 @@
                     <p class="text-sm opacity-70">
                         {{ \App\Models\Testimoni::count() }}
                         testimoni terdaftar
+                    </p>
+                </a>
+                <a
+                    href="{{ route('admin.produk.index') }}" 
+                    class="card p-6 hover:shadow-lg transition"
+                >
+                    <h3 class="font-serif text-lg font-semibold mb-1">
+                        Kelola Produk
+                    </h3>
+                    <p class="text-sm opacity-70">
+                        {{ \App\Models\Produk::count() }}
+                        produk terdaftar
                     </p>
                 </a>
             </div>

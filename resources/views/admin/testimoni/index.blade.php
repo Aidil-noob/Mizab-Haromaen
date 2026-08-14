@@ -54,14 +54,14 @@
                                         <a 
                                             href="{{ route('admin.testimoni.edit', $t) }}"
                                             aria-label="ubah"
-                                            class="button lg:button--lg button--neutral button--icon-only"
+                                            class="button lg:button--lg button--neutral button--icon-only icon-box--lg"
                                         >    
                                             <x-lucide-file-pen/>
                                         </a>
 
                                         {{-- tombol hapus --}}
                                         <button 
-                                            class="button button--danger button--icon-only"
+                                            class="button button--danger button--icon-only icon-box--lg"
                                             data-stisla-dialog-trigger="konfirmasiHapus-{{ $t->id }}"
                                         >
                                             <x-lucide-trash-2/>

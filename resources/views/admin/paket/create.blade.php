@@ -9,27 +9,70 @@
                 @csrf
 
                 <div class="field">
-                    <label class="field__label">Nama Paket</label>
-                    <input type="text" name="nama_paket" class="input" value="{{ old('nama_paket') }}" required />
+                    <x-input-label :value="__('Nama Paket')"/>
+                    <div class="input-group">
+                        <span class="input-group__text">
+                            <x-lucide-tickets-plane/>
+                        </span>
+                        <x-text-input
+                            type="text"
+                            name="nama_paket" 
+                            class="input" 
+                            value="{{ old('nama_paket') }}" 
+                            required 
+                        />
+                    </div>
                 </div>
 
                 <div class="field">
-                    <label class="field__label">Hotel Madinah</label>
-                    <input type="text" name="nama_hotel_madinah" class="input" value="{{ old('nama_hotel_madinah') }}" required />
+                    <x-input-label :value="__('Hotel Madinah')" />
+                    <div class="input-group">
+                        <span class="input-group__text">
+                            <x-lucide-hotel/>
+                        </span>
+                        <x-text-input 
+                            type="text" 
+                            name="nama_hotel_madinah" 
+                            class="input" 
+                            value="{{ old('nama_hotel_madinah') }}"
+                            required 
+                        />
+                    </div>
                 </div>
 
                 <div class="field">
-                    <label class="field__label">Hotel Makkah</label>
-                    <input type="text" name="nama_hotel_makkah" class="input" value="{{ old('nama_hotel_makkah') }}" required />
+                    <x-input-label :value="__('Hotel Makkah')" />
+                    <div class="input-group">
+                        <span class="input-group__text">
+                            <x-lucide-hotel/>
+                        </span>
+                        <x-text-input
+                            type="text" 
+                            name="nama_hotel_makkah" 
+                            class="input" 
+                            value="{{ old('nama_hotel_makkah') }}" 
+                            required 
+                        />
+                    </div>
                 </div>
 
                 <div class="field">
-                    <label class="field__label">Harga (Rp)</label>
-                    <input type="number" name="harga" class="input" value="{{ old('harga') }}" required />
+                    <x-input-label :value="__('Harga')"/>
+                    <div class="input-group">
+                        <span class="input-group__text">
+                            Rp
+                        </span>
+                        <x-text-input
+                            type="number" 
+                            name="harga" 
+                            value="{{ old('harga') }}"
+                            required
+                        />
+                    </div>
                 </div>
 
-                <button type="submit" class="button button--primary">Simpan</button>
-                <button type="reset" class="button button--neutral">Batal</button>
+                <x-primary-button>Tambah</x-primary-button>
+                <x-secondary-button>Batal</x-secondary-button>
             </form>
         </div>
     </div>

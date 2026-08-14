@@ -40,6 +40,17 @@
                     Video Testimoni
                 </a>
             </li>
+            <li>
+                <a 
+                    href="{{ route('admin.produk.index') }}" 
+                    class="navbar__button"
+                    @if (request()->routeIs('admin.produk.*'))
+                        data-state="active"
+                    @endif
+                >
+                    Produk
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

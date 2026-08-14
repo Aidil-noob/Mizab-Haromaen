@@ -9,15 +9,17 @@
                 @csrf
     
                 <div class="card__header rounded-t-md">                   
-                    <label class="field__label">URL</label>
-                    <input
-                        type="url"
-                        name="url"
-                        class="input"
-                        value="{{ old('url') }}"
-                        required 
-                        id="input-url"
-                    />
+                    <x-input-label class="field__label" :value="__('URL')"/>
+                    <div class="input-group">
+                        <x-text-input
+                            type="url"
+                            name="url"
+                            class="input"
+                            value="{{ old('url') }}"
+                            required 
+                            id="input-url"
+                        />
+                    </div>
                 </div>
 
                 <div class="card__body items-center">
@@ -25,12 +27,12 @@
                 </div>
                     
                 <div class="card__footer flex justify-end">
-                    <button type="submit" class="button button--primary">
+                    <x-primary-button>
                         Unggah
-                    </button>
-                    <button type="reset" class="button button--neutral">
+                    </x-primary-button>
+                    <x-secondary-button>
                         Batal
-                    </button>
+                    </x-secondary-button>
                 </div>
             </form> 
         </div>

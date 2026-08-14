@@ -79,83 +79,85 @@
         </section>
     </div>
 
-    <div class="page container mt-10 px-4 sm:px-6 lg:px-8 items-center">
+    <div class="page container mt-10 px-4 sm:px-6 lg:px-8 items-center mx-auto">
 
         {{-- header --}}
         <header class="page__header">
-            <div class="page__headline flex-col lg:grid lg:grid-cols-2 items-center">
-                <h1 class="page__title text-center mb-2 lg:col-span-2">
+            <div class="page__headline flex flex-col items-center">
+                <h1 class="page__title text-center mb-2 lg:text-4xl">
                     Selamat Datang di Mizab Haromaen
                 </h1>
-                <img
-                    src="{{ asset('storage/ikon/IMG_7539.webp') }}"
-                    class="h-auto w-70"
-                    alt="Mizab Haromaen"
-                />
-                <p class="page__description text-justify">
-                    Dengan Pedoman "One Stop Travel Services"
-                    Kami menyediakan beragam solusi layanan perjalanan
-                    yang memadukan pengalaman Kami dengan teknologi
-                    terkini. Semua Kami lakukan agar Anda dapat
-                    meningkatkan efisiensi tanpa mengurangi kualitas
-                    layanan yang Anda harapkan dan terima.
-                </p>
+                <div class="flex flex-col items-center lg:flex-row mx-auto">
+                    <img
+                        src="{{ asset('storage/ikon/IMG_7539.webp') }}"
+                        class="h-auto w-70 xl:w-100"
+                        alt="Mizab Haromaen"
+                    />
+                    <p class="page__description text-justify lg:text-lg">
+                        Dengan Pedoman "One Stop Travel Services"
+                        Kami menyediakan beragam solusi layanan perjalanan
+                        yang memadukan pengalaman Kami dengan teknologi
+                        terkini. Semua Kami lakukan agar Anda dapat
+                        meningkatkan efisiensi tanpa mengurangi kualitas
+                        layanan yang Anda harapkan dan terima.
+                    </p>
+                </div>
             </div>
         </header>
             
         <!--paket umroh -->
         <section class="page__section" id="paket">
-                <div class="page__section-header justify-center">
-                    <div class="page__section-title text-2xl">
-                        Paket Umroh
-                    </div>
+            <div class="page__section-header justify-center">
+                <div class="page__section-title text-2xl">
+                    Paket Umroh
                 </div>
-                <div class="flex-col flex items-center gap-8 px-1 lg:grid lg:grid-cols-3">
-                    @foreach ($paket as $p)
-                    <div class="media border-4 w-full lg:flex-col">
-                        
-                        {{-- nama paket --}}
-                        <div class="font-serif font-extrabold text-2xl text-center shrink-0 w-32">
-                            {!! strtoupper(str_replace(' ', '<br>', $p->nama_paket)) !!}
-                        </div>
-            
-                        {{-- nama hotel --}}
-                        <div class="flex flex-col gap-2 flex-1">
-                            <div class="flex items-center gap-3">
-                                <span class="icon-box icon-box--circle shrink-0">
-                                    @svg('lucide-hotel', 'h-4 w-4')
-                                </span>
-                                <div>
-                                    <span class="font-medium">HOTEL MADINAH:</span>
-                                    <span class="font-bold block">{{ $p->nama_hotel_madinah }}</span>
+            </div>
+            <div class="flex-col flex items-center gap-8 px-1 lg:grid lg:grid-cols-3">
+                @foreach ($umroh as [$p, $h])
+                    <div class="card min-h-full">
+                        <div class="card__body">
+                            <img src="{{asset('storage/' . $h)}}" class="rounded" />
+                            <div class="media media--vertical border-4 w-full flex lg:flex-col">
+                                
+                                {{-- nama paket --}}
+                                <div class="font-serif font-extrabold text-2xl text-center uppercase">
+                                    {{ $p->nama_paket }} 
                                 </div>
-                            </div>         
-                            <div class="flex items-center gap-3">
-                                <span class="icon-box icon-box--circle shrink-0">
-                                    @svg('lucide-hotel', 'h-4 w-4')
-                                </span>
-                                <div>
-                                    <span class="font-medium">HOTEL MAKKAH:</span>
-                                    <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
-                                </div>
-                            </div>
-                        </div>
                     
-                        {{-- harga --}}
-                        <div class="flex items-end shrink-0">
-                            <span class="text-sm font-semibold mb-2">Rp</span>
-                            <span class="font-serif font-extrabold text-4xl leading-none">
-                                {{ number_format($p->harga / 1000000, 1) }}
-                            </span>
-                            <span class="text-sm font-semibold mb-2">JT</span>
-                        </div>
+                                {{-- nama hotel --}}
+                                <div class="flex flex-col gap-2 flex-1">
+                                    <div class="flex items-center gap-3">
+                                        <span class="icon-box icon-box--circle shrink-0">
+                                            @svg('lucide-hotel', 'h-4 w-4')
+                                        </span>
+                                        <div>
+                                            <span class="font-medium">HOTEL MADINAH:</span>
+                                            <span class="font-bold block">{{ $p->nama_hotel_madinah }}</span>
+                                        </div>
+                                    </div>         
+                                    <div class="flex items-center gap-3">
+                                        <span class="icon-box icon-box--circle shrink-0">
+                                            @svg('lucide-hotel', 'h-4 w-4')
+                                        </span>
+                                        <div>
+                                            <span class="font-medium">HOTEL MAKKAH:</span>
+                                            <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="separator"/>
+
+                                <div class="text-end text-4xl font-bold">{{ number_format($p->harga / 1000000, 1) }} JT</div>
+                            </div>
+                        </div> 
                     </div>
-                    @endforeach
-                </div>
-            </section>
+                @endforeach
+            </div>
+        </section>
     
         {{-- kartu --}}
-        {<section class="page__section">
+        <section class="page__section">
             <div class="card border-2 border-primary lg:flex-row">
                 <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
                     <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
@@ -232,7 +234,7 @@
                     <hr class="separator lg:w-px lg:h-full"/>
                     <div>
                         <h4 class="card__title text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
-                        <div class="flex flex-row justify-between items-center lg:flex-col lg:space-y-6">
+                        <div class="flex flex-row justify-between items-center space-x-2 lg:flex-col lg:space-y-6">
                             <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
                             <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-3xl rounded-xl p-1">
                                 7878787573
@@ -333,7 +335,7 @@
             <div class="grid grid-cols-2 gap-8">
                 <a 
                     class="flex gap-3 items-center"
-                    href="https://wa.me/6289613483509" 
+                    href="https://wa.me/6281161613435" 
                     target="_blank" 
                     rel="noopener noreferrer"
                 >

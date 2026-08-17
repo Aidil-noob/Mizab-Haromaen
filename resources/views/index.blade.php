@@ -27,7 +27,7 @@
         <script>eruda.init();</script>
     @endenv
 </head>
-<body>
+<body class="backdrop-blur-[350px]">
     
     <!-- navbar -->
     <nav class="navbar" data-stisla-navbar>
@@ -42,7 +42,7 @@
             data-stisla-navbar-toggle 
             aria-expanded="false"
         >
-            <x-lucide-menu/> {{-- ikon menu --}}
+            <x-lucide-equal/> {{-- ikon menu --}}
         </button>
         <div class="navbar__menu" data-state="closed">
             <ul class="navbar__nav">

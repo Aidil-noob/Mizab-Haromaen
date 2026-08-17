@@ -62,7 +62,7 @@
 
                                         {{-- tombol hapus --}}
                                         <button 
-                                            class="button button--sm button--danger button--icon-only"
+                                            class="button button--sm button--danger button--icon-only rounded-r-lg"
                                             data-stisla-dialog-trigger="konfirmasiHapus-{{ $p->id }}"
                                         >
                                             <x-lucide-trash-2/>

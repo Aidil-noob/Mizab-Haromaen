@@ -3,7 +3,7 @@
         <img class="h-auto w-50" src="{{ asset('storage/ikon/IMG_7540.webp') }}"/>
     </a>
     <button class="navbar__toggle" data-stisla-navbar-toggle aria-expanded="false">
-        <x-lucide-menu/>
+        <x-lucide-equal/>
     </button>
     <div class="navbar__menu">
         <ul class="navbar__nav">

@@ -27,13 +27,6 @@
         --media-border-color: var(--color-primary-foreground); /* warna latar belakang ikon */
     }
 
-    .combobox {
-        --combobox-item-bg-active: var(--color-primary-foreground); /*warna latar belakang item di combobox yang dipilih */
-        --combobox-item-color-active: var(--color-primary); /* warna teks item di combobox yang dipilih */
-        --combobox-item-bg-hover: var(--color-primary-foreground); /* warna latar belakang item di combobox jika disorot kursor */
-        --combobox-item-color-hover: var(--color-primary); /* warna teks item di combobox jika disorot kursor */
-    }
-
     .separator {
         --separator-color: var(--color-primary-foreground);
     }
@@ -51,15 +44,14 @@
 
     .button {
         --button-color: var(--color-primary-emphasis);
-        @variant lg {
-            --button-height: --spacing(13);
-            --button-padding-inline: --spacing(5);
-            --button-font-size: var(--text-base);
-            --button-radius: var(--radius-lg);
-        }
     }
 
     .card__header {
         background-color: var(--color-primary-foreground);
+    }
+
+    .textarea {
+        --textarea-border-color: var(--color-primary);
+        --textarea-border-width: 2px;
     }
 }

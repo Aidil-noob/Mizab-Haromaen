@@ -17,7 +17,7 @@
     />
 
     {{-- script untuk menampilkan postingan instagram --}}
-    <script async src="//www.instagram.com/embed.js"></script>
+    <script async src="https://www.instagram.com/embed.js"></script>
 
     {{-- ikon website --}}
     <link rel="icon" href="{{ asset('storage/ikon/IMG_7539.webp') }}" type="image/x-icon"/>
@@ -147,8 +147,70 @@
                                 </div>
 
                                 <hr class="separator"/>
+                                
+                                <div class="flex flex-row justify-between">
+                                    <button
+                                        class="button button--primary"
+                                        data-stisla-popover-trigger="pop-form-{{$p->id}}"
+                                    >
+                                        Pesan <x-lucide-send/>  
+                                    </button>
+                                    <p class="text-end font-bold text-4xl">{{ number_format($p->harga / 1000000, 1) }} JT</p>
+                                </div>
 
-                                <div class="text-end text-4xl font-bold">{{ number_format($p->harga / 1000000, 1) }} JT</div>
+                                {{-- popover --}}
+                                <div 
+                                    id="pop-form-{{$p->id}}" 
+                                    class="popover" 
+                                    data-stisla-popover 
+                                    data-stisla-popover-placement="bottom-start"
+                                >
+                                    <div class="popover__body">
+                                        <form 
+                                            class="flex flex-col w-full max-w-96 gap-3 mx-auto"
+                                            onsubmit="event.preventDefault();"
+                                        >
+                                            <div class="field">
+                            
+                                                {{-- pilih paket umroh --}}
+                                                <x-input-label for="paket" :value="__('Paket yang dipilih')"/>
+                                                <input
+                                                    type="text" 
+                                                    class="input border-2 border-[var(--color-primary)]"
+                                                    value="{{$p->nama_paket}}" 
+                                                    disabled
+                                                />
+                            
+                                                {{-- input jumlah jamaah --}}
+                                                <x-input-label for="jumlah" :value="__('Jumlah Orang')"/>
+                                                <input
+                                                    type="number"
+                                                    placeholder="0"
+                                                    id="jumlah"
+                                                    required
+                                                    class="input border-2 border-[var(--color-primary)]"
+                                                />
+                            
+                                                {{-- input nama nama jamaah --}}
+                                                <x-input-label for="nama" :value="__('Nama Lengkap Kalian')"/>
+                                                <div class="field__description">
+                                                    Pisahkan nama dengan
+                                                    <kbd class="kbd">Enter</kbd> / <kbd class="kbd">⤶</kbd>
+                                                    jika lebih dari 1 orang
+                                                </div>
+                                                <textarea 
+                                                    type="text"
+                                                    class="textarea"
+                                                    placeholder="Nama Lengkap..."
+                                                    id="nama"
+                                                    rows="3"
+                                                ></textarea>
+                                            </div>
+                                            
+                                            <x-primary-button>Daftar Sekarang</x-primary-button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div> 
                     </div>
@@ -265,67 +327,7 @@
                 @endforeach
             </div>
         </section>
-
-        <!-- form -->
-        <section class="page__section" id="daftar">
-            <div class="page__section-header justify-center">
-                <div class="page__section-title">
-                    Jika Anda berminat, Silahkan isi formulir ini
-                </div>
-            </div>
-            <form 
-                class="flex flex-col w-full max-w-96 gap-3 pb-64 mx-auto"
-                onsubmit="event.preventDefault();"
-                id="form"
-            >
-                <div class="field">
-
-                    {{-- pilih paket umroh --}}
-                    <label for="paket" class="field__label">Paket</label>
-                    <select 
-                        class="combobox"
-                        id="paket"
-                        data-stisla-combobox
-                        data-placeholder="Pilih Paket"
-                        required
-                    >
-                        <option value="" selected></option>     
-                        @foreach ($paket as $p)
-                        <option value="{{ $p->nama_paket }}">
-                            {{ $p->nama_paket }}
-                        </option>                 
-                        @endforeach
-                    </select>
-
-                    {{-- input jumlah jamaah --}}
-                    <label for="jumlah" class="field__label">Jumlah Orang</label>
-                    <input
-                        type="number"
-                        class="input"
-                        placeholder="0"
-                        id="jumlah"
-                        required
-                    />
-
-                    {{-- input nama nama jamaah --}}
-                    <label for="nama" class="field__label">Nama Lengkap Kalian</label>
-                    <div class="field__description">
-                        Pisahkan nama dengan
-                        <kbd class="kbd">Enter</kbd> / <kbd class="kbd">⤶</kbd>
-                        jika lebih dari 1 orang
-                    </div>
-                    <textarea 
-                        type="text"
-                        class="textarea"
-                        placeholder="Nama Lengkap..."
-                        id="nama"
-                        rows="3"
-                    ></textarea>
-                </div>
-                
-                <button type="submit" class="button button--primary">Daftar Sekarang</button>
-            </form>
-        </section>
+                                                    
     </div>
 
     {{-- footer --}}
@@ -386,17 +388,21 @@
     <script>
         function kirimWa(data) {
             const pesan = `Assalamualaikum, Saya mau mendaftar Umroh\nPaket: ${data.paket}\nJumlah Orang: ${data.jumlah}\nNama-nama Jamaah:\n${data.nama}`;
-            const url = `https://wa.me/6281161613435?text=${encodeURIComponent(pesan)}`;
-            window.open(url, '_blank');
+            const url = `https://wa.me/6281161613435?text=${encodeURIComponent(pesan)}`; //encodeURIComponent() berfungsi untuk mengubah spasi & \n menjadi format url yang valid
+            window.open(url, '_blank'); //buka di tab baru
         }
     
-        document.getElementById('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            kirimWa({
-                nama: e.target.elements.nama.value,
-                paket: e.target.elements.paket.value,
-                jumlah: e.target.elements.jumlah.value,
-            });
+        document.addEventListener('submit', function (e) { //mendengar interaksi submit
+            if (e.target && e.target.tagName === 'FORM') { //jalankan js jika interaksi berasal dari form
+                e.preventDefault();
+                
+                // Mengambil elemen input berdasarkan selector
+                kirimWa({
+                    paket: e.target.querySelector('input[disabled]').value,
+                    jumlah: e.target.querySelector('input[type="number"]').value,
+                    nama: e.target.querySelector('textarea').value
+                });
+            }
         });
     </script>
 </body>

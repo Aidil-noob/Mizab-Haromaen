@@ -1,6 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-serif text-xl font-bold">Edit Paket</h2>
+        <div class="flex flex-row justify-between items-center">
+            <h2 class="font-serif text-xl font-bold">Edit Paket</h2>
+            <a href="{{ route('admin.paket.index') }}" class="button button--primary">
+                <x-lucide-step-back/> Kembali
+            </a>
+        </div>
     </x-slot>
 
     <div class="py-8">
@@ -28,8 +33,10 @@
                     <input type="number" name="harga" class="input" value="{{ old('harga', $paket->harga) }}" required />
                 </div>
 
-                <button type="submit" class="button button--primary">Perbarui</button>
-                <button type="reset" class="button button--neutral">Batal</button>
+                <div class="field flex-row-reverse">
+                    <button type="submit" class="button button--primary">Perbarui</button>
+                    <button type="reset" class="button button--danger">Batal</button>
+                </div>
             </form>
         </div>
     </div>

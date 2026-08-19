@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between">     
+        <div class="flex flex-row justify-between items-center">     
             <h2 class="font-serif text-xl font-bold">
                 Kelola Paket Umroh
             </h2>
@@ -49,13 +49,13 @@
                                 <td>{{ $p->nama_hotel_makkah }}</td>
                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                 <td class="text-end">
-                                    <div class="button-group" role="group" aria-label="kelola data"> 
+                                    <div class="button-group button-group--lg" role="group" aria-label="kelola data"> 
 
                                         {{-- tombol ubah data --}}
                                         <a 
-                                            href="{{ route('admin.testimoni.edit', $p) }}"
+                                            href="{{ route('admin.paket.edit', $p) }}"
                                             aria-label="ubah"
-                                            class="button button--sm lg:button--lg button--neutral button--icon-only"
+                                            class="button button--sm button--neutral button--icon-only"
                                         >    
                                             <x-lucide-file-pen/>
                                         </a>
@@ -135,8 +135,10 @@
                                     <form
                                         id="hapus-{{ $p->id }}"
                                         action="{{ route('admin.paket.destroy', $p) }}"
+                                        method="POST"
                                     >
-                                        @csrf @method('DELETE')
+                                        @csrf
+                                        @method('DELETE')
                                     </form>
                                 </td>
                             </tr>

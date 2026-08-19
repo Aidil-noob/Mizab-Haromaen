@@ -79,12 +79,12 @@
         </section>
     </div>
 
-    <div class="page container mt-10 px-4 sm:px-6 lg:px-8 items-center mx-auto">
+    <div class="page mt-10 px-4 sm:px-6 lg:px-8 items-center mx-auto">
 
         {{-- header --}}
         <header class="page__header">
             <div class="page__headline flex flex-col items-center">
-                <h1 class="page__title text-center mb-2 lg:text-4xl">
+                <h1 class="page__title text-center mb-2 text-2xl lg:text-4xl">
                     Selamat Datang di Mizab Haromaen
                 </h1>
                 <div class="flex flex-col items-center lg:flex-row mx-auto">
@@ -93,11 +93,11 @@
                         class="h-auto w-70 xl:w-100"
                         alt="Mizab Haromaen"
                     />
-                    <p class="page__description text-justify lg:text-lg">
-                        Dengan Pedoman "One Stop Travel Services"
-                        Kami menyediakan beragam solusi layanan perjalanan
-                        yang memadukan pengalaman Kami dengan teknologi
-                        terkini. Semua Kami lakukan agar Anda dapat
+                    <p class="text-justify lg:text-lg">
+                        Dengan pedoman <span class="italic">"One Stop Travel Services",</span>
+                        kami menyediakan beragam solusi layanan perjalanan
+                        yang memadukan pengalaman kami dengan teknologi
+                        terkini. Semua kami lakukan agar Anda dapat
                         meningkatkan efisiensi tanpa mengurangi kualitas
                         layanan yang Anda harapkan dan terima.
                     </p>
@@ -108,11 +108,11 @@
         <!--paket umroh -->
         <section class="page__section" id="paket">
             <div class="page__section-header justify-center">
-                <div class="page__section-title text-2xl">
+                <div class="page__section-title text-2xl lg:text-4xl">
                     Paket Umroh
                 </div>
             </div>
-            <div class="flex-col flex items-center gap-8 px-1 lg:grid lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 @foreach ($umroh as [$p, $h])
                     <div class="card min-h-full">
                         <div class="card__body">
@@ -120,7 +120,7 @@
                             <div class="media media--vertical border-4 w-full flex lg:flex-col">
                                 
                                 {{-- nama paket --}}
-                                <div class="font-serif font-extrabold text-2xl text-center uppercase">
+                                <div class="font-serif font-extrabold text-2xl text-center uppercase tracking-tight">
                                     {{ $p->nama_paket }} 
                                 </div>
                     
@@ -132,7 +132,7 @@
                                         </span>
                                         <div>
                                             <span class="font-medium">HOTEL MADINAH:</span>
-                                            <span class="font-bold block">{{ $p->nama_hotel_madinah }}</span>
+                                            <span class="font-bold line-clamp-1">{{ $p->nama_hotel_madinah }}</span>
                                         </div>
                                     </div>         
                                     <div class="flex items-center gap-3">
@@ -141,7 +141,7 @@
                                         </span>
                                         <div>
                                             <span class="font-medium">HOTEL MAKKAH:</span>
-                                            <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
+                                            <span class="font-bold line-clamp-1">{{ $p->nama_hotel_makkah }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +310,7 @@
         <!-- ulasan -->
         <section class="page__section" id="ulasan">
             <div class="page__section-header justify-center">
-                <div class="page__section-title">
+                <div class="page__section-title text-2xl lg:text-4xl">
                     Testimoni Jamaah
                 </div>
             </div>

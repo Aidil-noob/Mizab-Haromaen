@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between items-center">
             <h2 class="font-serif text-xl font-bold">
-                Kelola Video Testimoni Jamaah
+                Kelola Video Testimoni
             </h2>
             <a
                 href="{{ route('admin.testimoni.create') }}"
@@ -144,6 +144,7 @@
                                     <form
                                         id="hapus-{{ $t->id }}"
                                         action="{{ route('admin.testimoni.destroy', $t) }}"
+                                        method="POST"
                                     >
                                         @csrf @method('DELETE')
                                     </form>

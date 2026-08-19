@@ -61,18 +61,18 @@
 
     <!-- hero section -->
     <div class="page">
-        <section class="page__section">
-            <div class="card w-full">
+        <section class="page__section p-0">
+            <div class="relative w-full">
                 <img
                     src="{{ asset('storage/aset/jamaah_mizab_haromaen.jpg') }}"
-                    class="h-80 w-auto object-cover lg:h-100"
+                    class="h-72 w-full sm:h-80 object-cover lg:h-[500px]"
                 />
-                <div class="card__overlay">
-                    <h1 class="card__title text-3xl text-center lg:text-5xl [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">
+                <div class="card__overlay justify-end items-center">
+                    <h1 class="card__title text-3xl sm:text-4xl font-bold text-center lg:text-5xl drop-shadow-lg">
                         Travel Umroh & Haji Resmi di Medan
                     </h1>
-                    <p class="card__text text-center lg:text-3xl">
-                        Dipimpin oleh Muthawif-Muthawif berpengalaman, membuat perjalanan ibadah terasa menyentuh hati 
+                    <p class="card__text text-center sm:text-lg lg:text-xl text-white-90 max-w-2xl drop-shadow">
+                        Dipimpin oleh Muthawif-Muthawif berpengalaman, membuat perjalanan ibadah terasa menyentuh hati.
                     </p>
                 </div>
             </div>
@@ -93,8 +93,8 @@
                         class="h-auto w-70 xl:w-100"
                         alt="Mizab Haromaen"
                     />
-                    <p class="text-justify lg:text-lg">
-                        Dengan pedoman <span class="italic">"One Stop Travel Services",</span>
+                    <p class="text-justify leading-7 lg:text-lg">
+                        Dengan pedoman <span class="italic font-medium">"One Stop Travel Services",</span>
                         kami menyediakan beragam solusi layanan perjalanan
                         yang memadukan pengalaman kami dengan teknologi
                         terkini. Semua kami lakukan agar Anda dapat
@@ -132,7 +132,7 @@
                                         </span>
                                         <div>
                                             <span class="font-medium">HOTEL MADINAH:</span>
-                                            <span class="font-bold line-clamp-1">{{ $p->nama_hotel_madinah }}</span>
+                                            <span class="font-bold inline sm:line-clamp-1">{{ $p->nama_hotel_madinah }}</span>
                                         </div>
                                     </div>         
                                     <div class="flex items-center gap-3">
@@ -141,7 +141,7 @@
                                         </span>
                                         <div>
                                             <span class="font-medium">HOTEL MAKKAH:</span>
-                                            <span class="font-bold line-clamp-1">{{ $p->nama_hotel_makkah }}</span>
+                                            <span class="font-bold inline sm:line-clamp-1">{{ $p->nama_hotel_makkah }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -222,83 +222,58 @@
         <section class="page__section">
             <div class="card border-2 border-primary lg:flex-row">
                 <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
-                    <p class="text-3xl text-(--color-primary-emphasis)">DIRECT FLIGHT</p> 
+                    <p class="text-xl lg:text-3xl font-bold text-[var(--color-primary-emphasis)]">DIRECT FLIGHT</p> 
                     <img 
                         src="{{ asset('storage/aset/pesawat-lion-air.webp') }}"
-                        class="h-auto w-80"
+                        class="h-auto w-60 lg:w-72"
                     />
-                    <p class="text-2xl">START KUALANAMU &mdash; MEDAN</p>             
+                    <p class="text-base lg:text-xl font-semibold text-center">START KUALANAMU &mdash; MEDAN</p>             
                 </div>
                 <div class="card__body space-y-4 lg:flex-row">
                     <div>
                         <h5 class="card__title text-sm mb-2">Harga Sudah Termasuk:</h5>
-        				<ul class="space-y-1.5 text-sm">
-        					<li class="flex items-center gap-2">
-        						@svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-                            	Tiket Pesawat PP
-        					</li>
-        					<li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Air Zam-zam
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Perlengkapan
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Makan 3x Sehari
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Handling Bandara
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Bagasi 30 Kg
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Visa Umroh
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
-        		                Lounge Bandara
-        		            </li>
+        				<ul class="space-y-2 text-sm">
+                            @foreach ([
+                                'Tiket Pesawat PP',
+                                'Air Zamzam',
+                                'Perlengkapan',
+                                'Makan 3× Sehari',
+                                'Handling Bandara',
+                                'Bagasi 30 kg',
+                                'Visa Umroh',
+                                'Lounge Bandara'
+                            ] as $t)
+        					    <li class="flex items-center gap-2">
+        						    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+                            	    {{ $t }}
+        					    </li>
+                            @endforeach
         				</ul>
                     </div>
                     <hr class="separator lg:w-px lg:h-full"/>
                     <div>
                         <h5 class="card__title text-sm mb-2">Harga Tidak Termasuk:</h5>
-        				<ul class="space-y-1.5 text-sm">
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                Pembuatan Paspor
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                Vaksin Meningitis
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                Vaksin Polio
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                Ziarah Diluar Program
-        		            </li>
-        		            <li class="flex items-center gap-2">
-        		                @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
-        		                Kelebihan Bagasi
-        		            </li>
+        				<ul class="space-y-2 text-sm">
+                            @foreach ([
+                                'Pembuatan Paspor',
+                                'Vaksin Meningitis',
+                                'Vaksin Polio',
+                                'Ziarah Di luar Program',
+                                'Kelebihan Bagasi'
+                            ] as $t)
+        		                <li class="flex items-center gap-2">
+        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    {{ $t }}
+        		                </li>
+                            @endforeach
         				</ul>
                     </div>
                     <hr class="separator lg:w-px lg:h-full"/>
                     <div>
-                        <h4 class="card__title text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
+                        <h4 class="card__title font-semibold text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
                         <div class="flex flex-row justify-between items-center space-x-2 lg:flex-col lg:space-y-6">
                             <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
-                            <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-3xl rounded-xl p-1">
+                            <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-xl rounded-lg px-4 py-2 font-bold">
                                 7878787573
                             </p>
                         </div>
@@ -332,11 +307,11 @@
 
     {{-- footer --}}
     <footer class="bg-primary text-white mt-16">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <h3 class="font-semibold mb-3">Informasi Lebih Lanjut</h3>
-            <div class="grid grid-cols-2 gap-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <h3 class="font-semibold text-lg mb-5">Informasi Lebih Lanjut</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a 
-                    class="flex gap-3 items-center"
+                    class="flex gap-3 items-center hover:underline"
                     href="https://wa.me/6281161613435" 
                     target="_blank" 
                     rel="noopener noreferrer"
@@ -347,7 +322,7 @@
                     0811-6161-3435
                 </a>
                 <a 
-                    class="flex gap-3 items-center"
+                    class="flex gap-3 items-center hover:underline"
                     href="https://www.instagram.com/mizabharomaen?igsh=MXIyMDFyOXR2ZHBncg=="
                     target="_blank"
                     rel="noopener noreferrer"
@@ -359,7 +334,7 @@
                 </a>
                 <a 
                     href="https://www.facebook.com/share/1BYS46wSXo/"
-                    class="flex items-center gap-3"
+                    class="flex items-center gap-3 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -372,7 +347,7 @@
                     href="https://maps.app.goo.gl/cQqTBmJR84zSsRtYA" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="flex items-center gap-3"
+                    class="flex items-center gap-3 hover:underline"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>

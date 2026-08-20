@@ -36,7 +36,7 @@
         <script>eruda.init();</script>
     @endenv
 </head>
-<body class="backdrop-blur-[350px]">
+<body class="backdrop-blur-md">
     
     <!-- navbar -->
     <nav class="navbar" data-stisla-navbar>
@@ -70,20 +70,12 @@
 
     <!-- hero section -->
     <div class="page">
-        <section class="page__section p-0">
-            <div class="relative w-full">
+        <section class="page__section">
+            <div class="card w-full">
                 <img
                     src="{{ asset('storage/aset/jamaah_mizab_haromaen.jpg') }}"
                     class="h-72 w-full sm:h-80 object-cover lg:h-[500px]"
                 />
-                <div class="card__overlay justify-end items-center">
-                    <h1 class="card__title text-3xl sm:text-4xl font-bold text-center lg:text-5xl drop-shadow-lg">
-                        Travel Umroh & Haji Resmi di Medan
-                    </h1>
-                    <p class="card__text text-center sm:text-lg lg:text-xl text-white-90 max-w-2xl drop-shadow">
-                        Dipimpin oleh Muthawif-Muthawif berpengalaman, membuat perjalanan ibadah terasa menyentuh hati.
-                    </p>
-                </div>
             </div>
         </section>
     </div>
@@ -93,33 +85,43 @@
         {{-- header --}}
         <header class="page__header">
             <div class="page__headline flex flex-col items-center">
-                <h2 class="page__title text-center mb-2 text-2xl lg:text-4xl">
-                    Selamat Datang di Mizab Haromaen
-                </h2>
                 <div class="flex flex-col items-center lg:flex-row mx-auto">
                     <img
                         src="{{ asset('storage/ikon/IMG_7539.webp') }}"
                         class="h-auto w-70 xl:w-100"
                         alt="Mizab Haromaen"
                     />
-                    <p class="text-left leading-7 lg:text-lg">
-                        Dengan pedoman <span class="italic font-medium">"One Stop Travel Services",</span>
-                        kami menyediakan beragam solusi layanan perjalanan
-                        yang memadukan pengalaman kami dengan teknologi
-                        terkini. Semua kami lakukan agar Anda dapat
-                        meningkatkan efisiensi tanpa mengurangi kualitas
-                        layanan yang Anda harapkan dan terima.
-                    </p>
+                    <div class="flex flex-col">
+                        <h2 class="page__title text-center mb-2 text-2xl lg:text-4xl mb-10 decoration-solid underline underline-offset-8">
+                            MIZAB HAROMAEN
+                        </h2>
+                        <p class="leading-7 lg:text-lg text-justify indent-8">
+                            <span class="font-bold">
+                                PT Mizab Haromaen
+                            </span> 
+                            hadir sebagai penyelenggara
+                            perjalanan umroh yang berupaya memberikan
+                            pelayanan terbaik bagi para jamaah. 
+                            Mulai dari proses pendaftaran hingga
+                            kepulangan ke Indonesia, setiap tahapan
+                            dirancang agar jamaah dapat beribadah 
+                            dengan nyaman dan fokus. Pelayanan yang
+                            ramah, pendampingan selama perjalanan,
+                            serta bimbingan ibadah menjadi bagian
+                            penting agar jamaah dapat menjalankan
+                            seluruh rangkaian umroh dengan baik.
+                        </p>
+                    </div>
                 </div>
             </div>
         </header>
             
         <!--paket umroh -->
         <section class="page__section" id="paket">
-            <div class="page__section-header justify-center">
-                <div class="page__section-title text-2xl lg:text-4xl">
-                    Paket Umroh
-                </div>
+            <div class="page__section-header justify-center bg-primary py-4 mb-4 mt-30">
+                <h2 class="page__section-title text-2xl lg:text-4xl">
+                    PAKET UMROH
+                </h2>
             </div>
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($umroh as [$p, $h])
@@ -293,10 +295,10 @@
 
         <!-- ulasan -->
         <section class="page__section" id="ulasan">
-            <div class="page__section-header justify-center">
-                <div class="page__section-title text-2xl lg:text-4xl">
-                    Testimoni Jamaah
-                </div>
+            <div class="page__section-header justify-center bg-primary py-4 mb-4 mt-30">
+                <h2 class="page__section-title text-2xl lg:text-4xl">
+                    TESTIMONI JAMAAH
+                </h2>
             </div>
 
             {{-- reels instagram --}}

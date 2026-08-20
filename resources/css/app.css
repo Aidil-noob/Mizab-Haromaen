@@ -7,6 +7,7 @@
 
 @theme {
     --font-sans: 'Lora', serif; /* font utama */
+    --font-mono: 'Rubik', sans-serif;
     --color-primary: oklch(0.7474 0.1029 74.98); /* warna utama coklat susu */
     --color-primary-foreground: oklch(0.5315 0.1121 74.98); /* warna teks coklat emas */
     --color-surface: oklch(0.94 0.03 80); /* warna untuk elemen coklat muda */

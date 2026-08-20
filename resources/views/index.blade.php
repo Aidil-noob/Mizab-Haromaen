@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mizab Haromaen</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFWYEQP8TG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-DFWYEQP8TG');
+    </script>
 
     {{-- impor file css & js --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -84,16 +93,16 @@
         {{-- header --}}
         <header class="page__header">
             <div class="page__headline flex flex-col items-center">
-                <h1 class="page__title text-center mb-2 text-2xl lg:text-4xl">
+                <h2 class="page__title text-center mb-2 text-2xl lg:text-4xl">
                     Selamat Datang di Mizab Haromaen
-                </h1>
+                </h2>
                 <div class="flex flex-col items-center lg:flex-row mx-auto">
                     <img
                         src="{{ asset('storage/ikon/IMG_7539.webp') }}"
                         class="h-auto w-70 xl:w-100"
                         alt="Mizab Haromaen"
                     />
-                    <p class="text-justify leading-7 lg:text-lg">
+                    <p class="text-left leading-7 lg:text-lg">
                         Dengan pedoman <span class="italic font-medium">"One Stop Travel Services",</span>
                         kami menyediakan beragam solusi layanan perjalanan
                         yang memadukan pengalaman kami dengan teknologi
@@ -112,7 +121,7 @@
                     Paket Umroh
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($umroh as [$p, $h])
                     <div class="card min-h-full">
                         <div class="card__body">
@@ -120,7 +129,7 @@
                             <div class="media media--vertical border-4 w-full flex lg:flex-col">
                                 
                                 {{-- nama paket --}}
-                                <div class="font-serif font-extrabold text-2xl text-center uppercase tracking-tight">
+                                <div class="font-serif font-extrabold text-2xl text-center uppercase tracking-tight min-h-16 flex items-center justify-center">
                                     {{ $p->nama_paket }} 
                                 </div>
                     
@@ -222,7 +231,7 @@
         <section class="page__section">
             <div class="card border-2 border-primary lg:flex-row">
                 <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
-                    <p class="text-xl lg:text-3xl font-bold text-[var(--color-primary-emphasis)]">DIRECT FLIGHT</p> 
+                    <h2 class="page__section-title text-xl lg:text-3xl font-bold text-[var(--color-primary-emphasis)]">DIRECT FLIGHT</h2> 
                     <img 
                         src="{{ asset('storage/aset/pesawat-lion-air.webp') }}"
                         class="h-auto w-60 lg:w-72"

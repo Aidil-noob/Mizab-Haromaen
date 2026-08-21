@@ -10,7 +10,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-    
+
         gtag('config', 'G-DFWYEQP8TG');
     </script>
 
@@ -36,19 +36,19 @@
         <script>eruda.init();</script>
     @endenv
 </head>
-<body class="backdrop-blur-md">
-    
+<body>
+
     <!-- navbar -->
     <nav class="navbar" data-stisla-navbar>
         <a class="navbar__brand">
             <img
-                src="{{ asset('storage/ikon/IMG_7540.webp') }}" 
+                src="{{ asset('storage/ikon/IMG_7540.webp') }}"
                 class="h-auto w-50"
             />
-        </a> 
+        </a>
         <button
             class="navbar__toggle"
-            data-stisla-navbar-toggle 
+            data-stisla-navbar-toggle
             aria-expanded="false"
         >
             <x-lucide-equal/> {{-- ikon menu --}}
@@ -62,6 +62,9 @@
                     <a class="navbar__button" href="#ulasan">Ulasan</a>
                 </li>
                 <li>
+                    <a class="navbar__button" href="#kontak">Kontak</a>
+                </li>
+                <li>
                     <a class="navbar__button" href="{{ route('login') }}">Admin</a>
                 </li>
             </ul>
@@ -71,11 +74,38 @@
     <!-- hero section -->
     <div class="page">
         <section class="page__section">
-            <div class="card w-full">
-                <img
-                    src="{{ asset('storage/aset/jamaah_mizab_haromaen.jpg') }}"
-                    class="h-72 w-full sm:h-80 object-cover lg:h-[500px]"
-                />
+            <div class="page__section-header">
+                <div class="relative h-[80vh] w-full overflow-hidden">
+                    <video
+                        loop
+                        playsinline
+                        autoplay
+                        muted
+                        class="absolute inset-0 object-cover w-full h-full z-0"
+                        src="{{ asset('storage/aset/hero-c.mp4') }}"
+                    >
+                    </video>
+
+                    <div class="flex flex-col justify-center items-start inset-0 absolute px-4 z-20">
+                        <h1 class="text-5xl lg:text-7xl text-[#FBFCFC] font-bold drop-shadow-lg">Travel Umroh dan Tours</h1>
+                        <p
+                            class="text-base/8 sm:text-lg lg:text-xl text-[#FBFCFC]/90 drop-shadow max-w-xl mt-4"
+                        >
+                            "Antara umrah yang satu dan umrah lainnya,
+                            Itu akan menghapuskan dosa di antara keduanya. Dan
+                            haji mabrur tidak ada balasannya melainkan surga."
+                            (HR. Bukhari dan Muslim)
+                        </p>
+                        <div class="w-full flex flex-col gap-y-6 mt-6 md:flex-row md:items-start md:w-auto md:gap-x-10">
+                            <a href="https://wa.me/6281161613435" class="button button--primary button--xl">
+                                Konsultasi Gratis
+                            </a>
+                            <a href="#paket" class="button button--outline button--neutral button--xl">
+                                Lihat Paket <x-lucide-move-down/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -98,13 +128,13 @@
                         <p class="leading-7 lg:text-lg text-justify indent-8">
                             <span class="font-bold">
                                 PT Mizab Haromaen
-                            </span> 
+                            </span>
                             hadir sebagai penyelenggara
                             perjalanan umroh yang berupaya memberikan
-                            pelayanan terbaik bagi para jamaah. 
+                            pelayanan terbaik bagi para jamaah.
                             Mulai dari proses pendaftaran hingga
                             kepulangan ke Indonesia, setiap tahapan
-                            dirancang agar jamaah dapat beribadah 
+                            dirancang agar jamaah dapat beribadah
                             dengan nyaman dan fokus. Pelayanan yang
                             ramah, pendampingan selama perjalanan,
                             serta bimbingan ibadah menjadi bagian
@@ -115,136 +145,83 @@
                 </div>
             </div>
         </header>
-            
+
         <!--paket umroh -->
         <section class="page__section" id="paket">
-            <div class="page__section-header justify-center bg-primary py-4 mb-4 mt-30">
+            <div class="page__section-header justify-center bg-primary py-4 mb-4 md:mb-10 mt-30">
                 <h2 class="page__section-title text-2xl lg:text-4xl">
                     DAFTAR PAKET UMROH
                 </h2>
             </div>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
                 @foreach ($umroh as [$p, $h])
                     <div class="card min-h-full">
                         <div class="card__body">
-                            <img src="{{asset('storage/' . $h)}}" class="rounded" />
-                            <div class="media media--vertical border-4 w-full flex lg:flex-col">
-                                
-                                {{-- nama paket --}}
-                                <div class="font-serif font-extrabold text-2xl text-center uppercase tracking-tight min-h-16 flex items-center justify-center">
-                                    {{ $p->nama_paket }} 
-                                </div>
-                    
-                                {{-- nama hotel --}}
-                                <div class="flex flex-col gap-2 flex-1">
-                                    <div class="flex items-center gap-3">
-                                        <span class="icon-box icon-box--circle shrink-0">
-                                            @svg('lucide-hotel', 'h-4 w-4')
-                                        </span>
-                                        <div>
-                                            <span class="font-medium">HOTEL MADINAH:</span>
-                                            <span class="font-bold inline sm:line-clamp-1">{{ $p->nama_hotel_madinah }}</span>
-                                        </div>
-                                    </div>         
-                                    <div class="flex items-center gap-3">
-                                        <span class="icon-box icon-box--circle shrink-0">
-                                            @svg('lucide-hotel', 'h-4 w-4')
-                                        </span>
-                                        <div>
-                                            <span class="font-medium">HOTEL MAKKAH:</span>
-                                            <span class="font-bold inline sm:line-clamp-1">{{ $p->nama_hotel_makkah }}</span>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <hr class="separator"/>
-                                
-                                <div class="flex flex-row justify-between">
-                                    <button
-                                        class="button button--primary"
-                                        data-stisla-popover-trigger="pop-form-{{$p->id}}"
-                                    >
-                                        Pilih <x-lucide-mouse-pointer/>  
-                                    </button>
-                                    <p class="text-end font-bold text-4xl">{{ number_format($p->harga / 1000000, 1) }} JT</p>
-                                </div>
-
-                                {{-- popover --}}
-                                <div 
-                                    id="pop-form-{{$p->id}}" 
-                                    class="popover" 
-                                    data-stisla-popover 
-                                    data-stisla-popover-placement="bottom-start"
-                                >
-                                    <div class="popover__body">
-                                        <form 
-                                            class="flex flex-col w-full max-w-96 gap-3 mx-auto"
-                                            onsubmit="event.preventDefault();"
-                                        >
-                                            <div class="field">
-                            
-                                                {{-- pilih paket umroh --}}
-                                                <x-input-label for="paket" :value="__('Paket yang dipilih')"/>
-                                                <input
-                                                    type="text" 
-                                                    class="input border-2 border-[var(--color-primary)]"
-                                                    value="{{$p->nama_paket}}" 
-                                                    disabled
-                                                />
-                            
-                                                {{-- input jumlah jamaah --}}
-                                                <x-input-label for="jumlah" :value="__('Jumlah Orang')"/>
-                                                <input
-                                                    type="number"
-                                                    placeholder="0"
-                                                    id="jumlah-{{$p->id}}"
-                                                    required
-                                                    class="input border-2 border-[var(--color-primary)]"
-                                                />
-                            
-                                                {{-- input nama nama jamaah --}}
-                                                <x-input-label for="nama" :value="__('Nama Lengkap Kalian')"/>
-                                                <div class="field__description">
-                                                    Pisahkan nama dengan
-                                                    <kbd class="kbd">Enter</kbd> / <kbd class="kbd">⤶</kbd>
-                                                    jika lebih dari 1 orang
-                                                </div>
-                                                <textarea 
-                                                    type="text"
-                                                    class="textarea"
-                                                    placeholder="Nama Lengkap..."
-                                                    id="nama-{{$p->id}}"
-                                                    rows="3"
-                                                    required
-                                                ></textarea>
-                                            </div>
-                                            
-                                            <x-primary-button id="kirim-{{$p->id}}">Pesan Sekarang</x-primary-button>
-                                        </form>
-                                    </div>
-                                </div>
+                            {{-- nama paket --}}
+                            <div class="font-serif font-extrabold text-2xl text-center uppercase">
+                                {{ $p->nama_paket }}
                             </div>
-                        </div> 
+
+                            <hr class="separator my-4"/>
+
+                            <img src="{{asset('storage/' . $h)}}" class="rounded" />
+                            <h3 class="font-bold text-start text-lg">Rincian Paket</h3>
+                            <div class="grid grid-cols-2 gap-x-15 gap-y-6">
+
+                                {{-- nama hotel --}}
+                                <div>
+                                    <span class="font-medium">Harga Mulai</span>
+                                    <span class="font-bold block">RP {{number_format($p->harga, 0, ',', '.')}}</span>
+                                </div>
+
+                                <div>
+                                    <span class="font-medium">Fasilitas Hotel</span>
+                                    <span class="font-bold block">
+                                        <x-rating-star :rating="$p->rating"/>
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <span class="font-medium">Hotel Madinah</span>
+                                    <span class="font-bold block">{{ $p->nama_hotel_madinah }}</span>
+                                </div>
+
+                                <div>
+                                    <span class="font-medium">Hotel Makkah</span>
+                                    <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
+                                </div>
+
+                            </div>
+
+                            <div class="flex justify-end my-2">
+                                <a
+                                    class="button py-7 pr-1 pl-7 button--primary button--outline button--xl font-semibold"
+                                    href="https://wa.me/6281161613435?text=Assalamualaikum%2C%20Saya%20(Nama%20Anda)%2C%20ingin%20mendaftar%20Umroh%20{{$p->nama_paket}}"
+                                    style="--button-radius:50px; --button-color:black;"
+                                >
+                                    Daftar Sekarang
+                                    <span
+                                        class="icon-box icon-box--primary icon-box--lg icon-box--circle"
+                                        style="--icon-box-bg:var(--color-primary-foreground);"
+                                    >
+                                        <x-lucide-move-up-right/>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </section>
-    
+
         {{-- kartu --}}
         <section class="page__section">
-            <div class="card border-2 border-primary lg:flex-row">
-                <div class="card__header flex-col rounded-t-lg justify-center lg:rounded-l-lg lg:rounded-t-none">
-                    <h2 class="page__section-title text-xl lg:text-3xl font-bold text-[var(--color-primary-emphasis)]">DIRECT FLIGHT</h2> 
-                    <img 
-                        src="{{ asset('storage/aset/pesawat-lion-air.webp') }}"
-                        class="h-auto w-60 lg:w-72"
-                    />
-                    <p class="text-base lg:text-xl font-semibold text-center">START KUALANAMU &mdash; MEDAN</p>             
-                </div>
-                <div class="card__body space-y-4 lg:flex-row">
-                    <div>
-                        <h5 class="card__title text-sm mb-2">Harga Sudah Termasuk:</h5>
-        				<ul class="space-y-2 text-sm">
+            <div class="card w-[94dvw] border-2 border-primary">
+                <div class="card__body flex-row py-0">
+                    <div class="space-y-3 mb-3 flex-1">
+                        <h5 class="card__title text-sm md:text-md lg:text-lg mt-4 mb-3">Harga Sudah Termasuk</h5>
+        				<ul class="text-sm md:text-md lg:text-lg xl:text-xl space-y-3">
                             @foreach ([
                                 'Tiket Pesawat PP',
                                 'Air Zamzam',
@@ -262,10 +239,12 @@
                             @endforeach
         				</ul>
                     </div>
-                    <hr class="separator lg:w-px lg:h-full"/>
-                    <div>
-                        <h5 class="card__title text-sm mb-2">Harga Tidak Termasuk:</h5>
-        				<ul class="space-y-2 text-sm">
+
+                    <div class="separator separator--vertical flex-none" role="separator" aria-orientation="vertical"></div>
+
+                    <div class="space-y-3 flex-1 pl-[13px]">
+                        <h5 class="card__title text-sm md:text-md lg:text-lg mt-4">Harga Tidak Termasuk</h5>
+        				<ul class="text-sm md:text-md lg:text-lg xl:text-xl space-y-3">
                             @foreach ([
                                 'Pembuatan Paspor',
                                 'Vaksin Meningitis',
@@ -280,15 +259,31 @@
                             @endforeach
         				</ul>
                     </div>
-                    <hr class="separator lg:w-px lg:h-full"/>
-                    <div>
-                        <h4 class="card__title font-semibold text-sm mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
-                        <div class="flex flex-row justify-between items-center space-x-2 lg:flex-col lg:space-y-6">
+                </div>
+
+                <div class="card__footer flex flex-wrap md:flex-row">
+                    <h4 class="card__title font-semibold text-sm md:text-md lg:text-lg xl:text-xl mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
+                    <div class="flex flex-col max-w-sm w-full">
+                        <div class="flex flex-row items-center w-full justify-between md:w-auto">
                             <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
-                            <p class="text-(--color-primary-foreground) bg-(--color-primary-emphasis) text-xl rounded-lg px-4 py-2 font-bold">
-                                7878787573
-                            </p>
+                            <div class="flex flex-row items-center gap-2 md:flex-wrap w-auto bg-[#FBFCFC] rounded-lg px-4 py-2 font-extrabold inset-shadow-sm/50">
+                                <p id="bsi" class="text-primary xl:text-lg font-sans">
+                                    1616120251
+                                </p>
+                                <button
+                                    class="button button--neutral button--soft button--icon-only text-[black]"
+                                    onclick="salin()"
+                                    aria-label="salin nomor rekening"
+                                    data-stisla-tooltip
+                                    data-stisla-tooltip-title="salin nomor rekening"
+                                    data-stisla-tooltip-delay="150"
+                                    data-stisla-tooltip-trigger="hover"
+                                >
+                                    <x-lucide-copy/>
+                                </button>
+                            </div>
                         </div>
+                        <p class="card__description mt-3">an: PT MIZAB HAROMAEN TOUR TRAVEL</p>
                     </div>
                 </div>
             </div>
@@ -296,7 +291,7 @@
 
         <!-- ulasan -->
         <section class="page__section" id="ulasan">
-            <div class="page__section-header justify-center bg-primary py-4 mb-4 mt-30">
+            <div class="page__section-header justify-center bg-primary py-4 mb-4 md:mb-10 mt-30">
                 <h2 class="page__section-title text-2xl lg:text-4xl">
                     TESTIMONI JAMAAH
                 </h2>
@@ -307,14 +302,14 @@
                 @foreach ($testimoni as $t)
                     <blockquote
                         class="instagram-media"
-                        data-instgrm-permalink="{{ $t->url }}" 
+                        data-instgrm-permalink="{{ $t->url }}"
                         data-instgrm-version="14"
                     >
                     </blockquote>
                 @endforeach
             </div>
         </section>
-                                                    
+
     </div>
 
     {{-- footer --}}
@@ -322,10 +317,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <h3 class="font-semibold text-lg mb-5">Informasi Lebih Lanjut</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a 
+                <a
                     class="flex gap-3 items-center hover:underline"
-                    href="https://wa.me/6281161613435" 
-                    target="_blank" 
+                    href="https://wa.me/6281161613435"
+                    target="_blank"
                     rel="noopener noreferrer"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
@@ -333,7 +328,7 @@
                     </svg>
                     0811-6161-3435
                 </a>
-                <a 
+                <a
                     class="flex gap-3 items-center hover:underline"
                     href="https://www.instagram.com/mizabharomaen?igsh=MXIyMDFyOXR2ZHBncg=="
                     target="_blank"
@@ -344,7 +339,7 @@
                     </svg>
                     PT MIZAB HAROMAEN
                 </a>
-                <a 
+                <a
                     href="https://www.facebook.com/share/1BYS46wSXo/"
                     class="flex items-center gap-3 hover:underline"
                     target="_blank"
@@ -356,8 +351,8 @@
                     Mizab Haromaen
                 </a>
                 <a
-                    href="https://maps.app.goo.gl/cQqTBmJR84zSsRtYA" 
-                    target="_blank" 
+                    href="https://maps.app.goo.gl/cQqTBmJR84zSsRtYA"
+                    target="_blank"
                     rel="noopener noreferrer"
                     class="flex items-center gap-3 hover:underline"
                 >
@@ -366,42 +361,17 @@
                     </svg>
                     Jl. Bunga Asoka No.49C Medan
                 </a>
-            </div>  
+            </div>
             <div class="border-t border-white/20 mt-8 pt-6 text-center text-sm opacity-70">
                 &copy; {{ date('Y') }} Mizab Haromaen.
             </div>
         </div>
     </footer>
     <script>
-        function kirimWa(data) {
-            const pesan = `Assalamualaikum, Saya mau mendaftar Umroh\nPaket: ${data.paket}\nJumlah Orang: ${data.jumlah}\nNama-nama Jamaah:\n${data.nama}`;
-            const url = `https://wa.me/6281161613435?text=${encodeURIComponent(pesan)}`; //encodeURIComponent() berfungsi untuk mengubah spasi & \n menjadi format url yang valid
-            window.open(url, '_blank'); //buka di tab baru
+        function salin() {
+            let teks = document.getElementById('bsi').innerText; //ambil tombol
+            navigator.clipboard.writeText(teks); //simpan ke papan klip
         }
-    
-        document.addEventListener('submit', function (e) { //mendengar interaksi submit
-            if (e.target && e.target.tagName === 'FORM') { //jalankan js jika interaksi berasal dari form
-                e.preventDefault();
-                
-                // Mengambil elemen input berdasarkan selector
-                kirimWa({
-                    paket: e.target.querySelector('input[disabled]').value,
-                    jumlah: e.target.querySelector('input[type="number"]').value,
-                    nama: e.target.querySelector('textarea').value
-                });
-            }
-        });
-
-        const fieldJumlah = document.querySelector('input[type="number"]').value; //ambil nilai dari input jumlah jamaah
-        const fieldNama = document.querySelector('textarea').value; //ambil nilai dari input nama-nama jamaah
-        
-        document.querySelectorAll('[id^="kirim-"]').forEach(tombol => { //pilih semua tombol dengan id yang berawalan "kirim-" lalu masing masing tombol tambahkan reaksi
-            tombol.addEventListener('click', (aksi) => { //tambahkan reaksi
-                if (fieldJumlah.value.trim() !== '' && fieldNama.value.trim() !== '') { //pengecekan input harus ada nilai nya
-                    aksi.target.setAttribute('aria-busy', 'true'); //menambah attribute loading ke tombol yang di klik
-                }
-            });                                            
-        });
     </script>
 </body>
 </html>

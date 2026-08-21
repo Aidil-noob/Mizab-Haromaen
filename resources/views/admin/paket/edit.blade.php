@@ -29,6 +29,11 @@
                 </div>
 
                 <div class="field">
+                    <x-input-label :value="__('Rating Hotel')"/>
+                    <input class="input" type="number" name="rating" value="{{ old('rating', $paket->rating) }}" required />
+                </div>
+
+                <div class="field">
                     <label class="field__label">Harga (Rp)</label>
                     <input type="number" name="harga" class="input" value="{{ old('harga', $paket->harga) }}" required />
                 </div>

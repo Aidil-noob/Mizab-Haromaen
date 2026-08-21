@@ -14,27 +14,32 @@
                 @csrf
 
                 <div class="field">
-                    <label class="field__label">Nama Paket</label>
-                    <input type="text" name="nama_paket" class="input" value="{{ old('nama_paket') }}" required />
+                    <x-input-label :value="__('Nama Paket')"/>
+                    <x-text-input type="text" name="nama_paket" value="{{ old('nama_paket') }}" required />
                 </div>
 
                 <div class="field">
-                    <label class="field__label">Hotel Madinah</label>
-                    <input type="text" name="nama_hotel_madinah" class="input" value="{{ old('nama_hotel_madinah') }}" required />
+                    <x-input-label :value="__('Nama Hotel Madinah')"/>
+                    <x-text-input type="text" name="nama_hotel_madinah" value="{{ old('nama_hotel_madinah') }}" required />
                 </div>
 
                 <div class="field">
-                    <label class="field__label">Hotel Makkah</label>
-                    <input type="text" name="nama_hotel_makkah" class="input" value="{{ old('nama_hotel_makkah') }}" required />
+                    <x-input-label :value="__('Nama Hotel Makkah')"/>
+                    <x-text-input type="text" name="nama_hotel_makkah" value="{{ old('nama_hotel_makkah') }}" required />
                 </div>
 
                 <div class="field">
-                    <label class="field__label">Harga (Rp)</label>
-                    <input type="number" name="harga" class="input" value="{{ old('harga') }}" required />
+                    <x-input-label :value="__('Rating Hotel')"/>
+                    <x-text-input type="number" name="rating" value="{{ old('rating') }}" required />
+                </div>
+
+                <div class="field">
+                    <x-input-label :value="__('Harga Paket')"/>
+                    <x-text-input type="number" name="harga" value="{{ old('harga') }}" required />
                 </div>
 
                 <div class="field flex-row-reverse">
-                    <button type="submit" class="button button--primary">Simpan</button>
+                    <x-primary-button>Simpan</x-primarbutton>
                     <button type="reset" class="button button--danger">Batal</button>
                 </div>
             </form>

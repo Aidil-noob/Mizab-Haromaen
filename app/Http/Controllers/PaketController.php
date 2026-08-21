@@ -24,6 +24,7 @@ class PaketController extends Controller
             'nama_paket' => 'required',
             'nama_hotel_madinah' => 'required',
             'nama_hotel_makkah' => 'required',
+            'rating' => 'required|integer',
             'harga' => 'required|integer'
         ]);
         
@@ -45,6 +46,7 @@ class PaketController extends Controller
             'nama_paket' => 'required',
             'nama_hotel_madinah' => 'required',
             'nama_hotel_makkah' => 'required',
+            'rating' => 'required|integer',
             'harga' => 'required|integer'
         ]);
 

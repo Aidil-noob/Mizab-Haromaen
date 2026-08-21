@@ -37,6 +37,7 @@
                                 <th scope="col">Nama Paket</th>
                                 <th scope="col">Hotel Madinah</th>
                                 <th scope="col">Hotel Makkah</th>
+                                <th scope="col">Rating</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col" class="text-end">Aksi</th>
                             </tr>
@@ -47,6 +48,7 @@
                                 <td class="py-2">{{ $p->nama_paket }}</td>
                                 <td>{{ $p->nama_hotel_madinah }}</td>
                                 <td>{{ $p->nama_hotel_makkah }}</td>
+                                <td>{{ $p->rating }}</td>
                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                 <td class="text-end">
                                     <div class="button-group button-group--lg" role="group" aria-label="kelola data"> 

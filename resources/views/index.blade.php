@@ -120,7 +120,7 @@
         <section class="page__section" id="paket">
             <div class="page__section-header justify-center bg-primary py-4 mb-4 mt-30">
                 <h2 class="page__section-title text-2xl lg:text-4xl">
-                    PAKET UMROH
+                    DAFTAR PAKET UMROH
                 </h2>
             </div>
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -164,7 +164,7 @@
                                         class="button button--primary"
                                         data-stisla-popover-trigger="pop-form-{{$p->id}}"
                                     >
-                                        Pesan <x-lucide-send/>  
+                                        Pilih <x-lucide-mouse-pointer/>  
                                     </button>
                                     <p class="text-end font-bold text-4xl">{{ number_format($p->harga / 1000000, 1) }} JT</p>
                                 </div>
@@ -197,7 +197,7 @@
                                                 <input
                                                     type="number"
                                                     placeholder="0"
-                                                    id="jumlah"
+                                                    id="jumlah-{{$p->id}}"
                                                     required
                                                     class="input border-2 border-[var(--color-primary)]"
                                                 />
@@ -213,12 +213,13 @@
                                                     type="text"
                                                     class="textarea"
                                                     placeholder="Nama Lengkap..."
-                                                    id="nama"
+                                                    id="nama-{{$p->id}}"
                                                     rows="3"
+                                                    required
                                                 ></textarea>
                                             </div>
                                             
-                                            <x-primary-button>Daftar Sekarang</x-primary-button>
+                                            <x-primary-button id="kirim-{{$p->id}}">Pesan Sekarang</x-primary-button>
                                         </form>
                                     </div>
                                 </div>
@@ -255,7 +256,7 @@
                                 'Lounge Bandara'
                             ] as $t)
         					    <li class="flex items-center gap-2">
-        						    @svg('lucide-check-circle', 'h-4 w-4 shrink-0')
+        						    <x-lucide-circle-check class="h-4 w-4 shrink-0 text-success"/>
                             	    {{ $t }}
         					    </li>
                             @endforeach
@@ -273,7 +274,7 @@
                                 'Kelebihan Bagasi'
                             ] as $t)
         		                <li class="flex items-center gap-2">
-        		                    @svg('lucide-x-circle', 'h-4 w-4 shrink-0')
+        		                    <x-lucide-circle-x class="h-4 w-4 shrink-0 text-danger"/>
         		                    {{ $t }}
         		                </li>
                             @endforeach
@@ -389,6 +390,17 @@
                     nama: e.target.querySelector('textarea').value
                 });
             }
+        });
+
+        const fieldJumlah = document.querySelector('input[type="number"]').value; //ambil nilai dari input jumlah jamaah
+        const fieldNama = document.querySelector('textarea').value; //ambil nilai dari input nama-nama jamaah
+        
+        document.querySelectorAll('[id^="kirim-"]').forEach(tombol => { //pilih semua tombol dengan id yang berawalan "kirim-" lalu masing masing tombol tambahkan reaksi
+            tombol.addEventListener('click', (aksi) => { //tambahkan reaksi
+                if (fieldJumlah.value.trim() !== '' && fieldNama.value.trim() !== '') { //pengecekan input harus ada nilai nya
+                    aksi.target.setAttribute('aria-busy', 'true'); //menambah attribute loading ke tombol yang di klik
+                }
+            });                                            
         });
     </script>
 </body>

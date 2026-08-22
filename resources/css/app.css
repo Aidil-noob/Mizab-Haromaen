@@ -55,4 +55,10 @@
         --textarea-border-color: var(--color-primary);
         --textarea-border-width: 2px;
     }
+
+    .carousel {
+        --carousel-control-bg: #FBFCFC;
+        --carousel-control-color: #12100e;
+        --carousel-control-bg-hover: #282523;
+    }
 }

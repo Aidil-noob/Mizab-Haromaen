@@ -191,6 +191,16 @@
                                     <span class="font-medium">Hotel Makkah</span>
                                     <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
                                 </div>
+                                            
+                                <div>
+                                    <span class="font-medium">Maskapai</span>
+                                    <span class="font-bold block">Lion Air</span>
+                                </div>
+
+                                <div>
+                                    <span class="font-medium">Durasi</span>
+                                    <span class="font-bold block">13 Hari</span>
+                                </div>
 
                             </div>
 
@@ -264,14 +274,13 @@
                 <div class="card__footer flex flex-wrap md:flex-row">
                     <h4 class="card__title font-semibold text-sm md:text-md lg:text-lg xl:text-xl mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
                     <div class="flex flex-col max-w-sm w-full">
-                        <div class="flex flex-row items-center w-full justify-between md:w-auto">
+                        <div class="flex flex-col md:flex-row items-start gap-y-5 w-full justify-between md:w-auto">
                             <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
-                            <div class="flex flex-row items-center gap-2 md:flex-wrap w-auto bg-[#FBFCFC] rounded-lg px-4 py-2 font-extrabold inset-shadow-sm/50">
-                                <p id="bsi" class="text-primary xl:text-lg font-sans">
-                                    1616120251
-                                </p>
+                            <div class="input-group input-group--lg max-w-3xs">
+                                <input type="number" id="bsi" class="input input--lg" value="1616120251"/>
                                 <button
-                                    class="button button--neutral button--soft button--icon-only text-[black]"
+                                    type="button"
+                                    class="button button--lg button--neutral button--soft button--icon-only text-[black]"
                                     onclick="salin()"
                                     aria-label="salin nomor rekening"
                                     data-stisla-tooltip
@@ -283,22 +292,22 @@
                                 </button>
                             </div>
                         </div>
-                        <p class="card__description mt-3">an: PT MIZAB HAROMAEN TOUR TRAVEL</p>
+                        <p class="card__description mt-3 italic">a.n. PT MIZAB HAROMAEN TOUR TRAVEL</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ulasan -->
-        <section class="page__section" id="ulasan">
+        <section class="page__section w-full" id="ulasan">
             <div class="page__section-header justify-center bg-primary py-4 mb-4 md:mb-10 mt-30">
                 <h2 class="page__section-title text-2xl lg:text-4xl">
                     TESTIMONI JAMAAH
                 </h2>
             </div>
 
-            {{-- reels instagram --}}
-            <div class="flex flex-wrap justify-center mt-6 gap-6">
+            {{-- reels instagram (desktop) dalam layout grid --}}
+            <div class="md:grid md:grid-cols-2 hidden lg:grid-cols-3 xl:grid-cols-4 mt-6 gap-6">
                 @foreach ($testimoni as $t)
                     <blockquote
                         class="instagram-media"
@@ -308,6 +317,51 @@
                     </blockquote>
                 @endforeach
             </div>
+
+            {{-- reels instagram (mobile) dalam bentuk carousel --}}
+            <div
+                class="carousel carousel--no-aspect md:hidden"
+                data-stisla-carousel 
+                data-stisla-carousel-loop="true"
+                tabindex="0"
+                role="region" 
+                aria-roledescription="carousel"
+                aria-label="testimoni jamaah"
+            >
+                <div class="carousel__viewport">
+                    <div class="carousel__track">
+                        @foreach ($testimoni as $t)
+                        <div
+                            class="carousel__slide"
+                            role="group"
+                            aria-roledescription="slide"
+                        >
+                            <blockquote
+                                class="instagram-media w-full"
+                                data-instgrm-permalink="{{ $t->url }}"
+                                data-instgrm-version="14"
+                            >    
+                            </blockquote>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <button 
+                    type="button"
+                    class="carousel__control carousel__control--prev"
+                    aria-label="sebelumnya"
+                >
+                    <x-lucide-chevron-left/> {{-- geser ke kiri --}}
+                </button>
+                <button 
+                    type="button"
+                    class="carousel__control carousel__control--next"
+                    aria-label="selanjutnya"
+                >
+                    <x-lucide-chevron-right/> {{-- geser ke kanan --}}
+                </button>
+            </div>
+                        
         </section>
 
     </div>
@@ -369,8 +423,8 @@
     </footer>
     <script>
         function salin() {
-            let teks = document.getElementById('bsi').innerText; //ambil tombol
-            navigator.clipboard.writeText(teks); //simpan ke papan klip
+            let teks = document.getElementById('bsi').value; //ambil tombol
+            navigator.clipboard.writeText(teks);
         }
     </script>
 </body>

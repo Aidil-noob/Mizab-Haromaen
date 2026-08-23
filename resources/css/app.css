@@ -59,6 +59,11 @@
     .carousel {
         --carousel-control-bg: #FBFCFC;
         --carousel-control-color: #12100e;
-        --carousel-control-bg-hover: #282523;
+        --carousel-control-bg-hover: #ced1d1;
+    }
+
+    .accordion {
+        --accordion-item-open-bg: #FBFCFC;
+        --accordion-trigger-bg-hover: #ffffffd8;
     }
 }

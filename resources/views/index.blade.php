@@ -62,6 +62,9 @@
                     <a class="navbar__button" href="#ulasan">Ulasan</a>
                 </li>
                 <li>
+                    <a class="navbar__button" href="#faq">FAQ</a>
+                </li>
+                <li>
                     <a class="navbar__button" href="#kontak">Kontak</a>
                 </li>
                 <li>
@@ -82,8 +85,11 @@
                         autoplay
                         muted
                         class="absolute inset-0 object-cover w-full h-full z-0"
-                        src="{{ asset('storage/aset/hero-c.mp4') }}"
                     >
+                        <source
+                            src="{{ asset('storage/aset/hero-c.webm') }}"
+                            type="video/webm"
+                        />
                     </video>
 
                     <div class="flex flex-col justify-center items-start inset-0 absolute px-4 z-20">
@@ -191,7 +197,7 @@
                                     <span class="font-medium">Hotel Makkah</span>
                                     <span class="font-bold block">{{ $p->nama_hotel_makkah }}</span>
                                 </div>
-                                            
+
                                 <div>
                                     <span class="font-medium">Maskapai</span>
                                     <span class="font-bold block">Lion Air</span>
@@ -274,7 +280,7 @@
                 <div class="card__footer flex flex-wrap md:flex-row">
                     <h4 class="card__title font-semibold text-sm md:text-md lg:text-lg xl:text-xl mb-2">Pembayaran Dapat Dilakukan Melalui:</h4>
                     <div class="flex flex-col max-w-sm w-full">
-                        <div class="flex flex-col md:flex-row items-start gap-y-5 w-full justify-between md:w-auto">
+                        <div class="flex flex-col md:flex-row items-start md:items-end gap-5 w-full justify-between md:w-auto">
                             <img src="{{ asset('storage/aset/bsi.webp') }}" class="h-15 w-auto"/>
                             <div class="input-group input-group--lg max-w-3xs">
                                 <input type="number" id="bsi" class="input input--lg" value="1616120251"/>
@@ -321,10 +327,10 @@
             {{-- reels instagram (mobile) dalam bentuk carousel --}}
             <div
                 class="carousel carousel--no-aspect md:hidden"
-                data-stisla-carousel 
+                data-stisla-carousel
                 data-stisla-carousel-loop="true"
                 tabindex="0"
-                role="region" 
+                role="region"
                 aria-roledescription="carousel"
                 aria-label="testimoni jamaah"
             >
@@ -340,20 +346,20 @@
                                 class="instagram-media w-full"
                                 data-instgrm-permalink="{{ $t->url }}"
                                 data-instgrm-version="14"
-                            >    
+                            >
                             </blockquote>
                         </div>
                         @endforeach
                     </div>
                 </div>
-                <button 
+                <button
                     type="button"
                     class="carousel__control carousel__control--prev"
                     aria-label="sebelumnya"
                 >
                     <x-lucide-chevron-left/> {{-- geser ke kiri --}}
                 </button>
-                <button 
+                <button
                     type="button"
                     class="carousel__control carousel__control--next"
                     aria-label="selanjutnya"
@@ -361,7 +367,18 @@
                     <x-lucide-chevron-right/> {{-- geser ke kanan --}}
                 </button>
             </div>
-                        
+
+        </section>
+
+        <section class="page__section w-full" id="faq">
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="card__title text-[#FBFCFC] md:text-md lg:text-lg xl:text-xl">
+                        Pertanyaan yang sering diajukan
+                    </h3>
+                </div>
+                <x-accordion/>
+            </div>
         </section>
 
     </div>

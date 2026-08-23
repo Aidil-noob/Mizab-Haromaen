@@ -15,11 +15,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
         <script async src="//www.instagram.com/embed.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-        <script>eruda.init();</script>
     </head>
-    <body class="font-sans antialiased backdrop-blur-[350px]">
+    <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

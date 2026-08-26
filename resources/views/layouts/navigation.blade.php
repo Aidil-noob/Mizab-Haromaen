@@ -8,8 +8,8 @@
     <div class="navbar__menu">
         <ul class="navbar__nav">
             <li>
-                <a 
-                    href="{{ route('dashboard') }}" 
+                <a
+                    href="{{ route('dashboard') }}"
                     class="navbar__button"
                     @if (request()->routeIs('dashboard'))
                         data-state="active"
@@ -19,8 +19,8 @@
                 </a>
             </li>
             <li>
-                <a 
-                    href="{{ route('admin.paket.index') }}" 
+                <a
+                    href="{{ route('admin.paket.index') }}"
                     class="navbar__button"
                     @if (request()->routeIs('admin.paket.*'))
                         data-state="active"
@@ -30,8 +30,8 @@
                 </a>
             </li>
             <li>
-                <a 
-                    href="{{ route('admin.testimoni.index') }}" 
+                <a
+                    href="{{ route('admin.testimoni.index') }}"
                     class="navbar__button"
                     @if (request()->routeIs('admin.testimoni.*'))
                         data-state="active"
@@ -41,5 +41,15 @@
                 </a>
             </li>
         </ul>
+        <button
+            type="submit"
+            class="button button--danger lg:p-6"
+            form="logout"
+        >
+            Keluar
+        </button>
+        <form id="logout" action="{{ route('logout') }}" method="POST">
+            @csrf
+        </form>
     </div>
 </nav>

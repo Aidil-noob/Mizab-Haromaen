@@ -58,6 +58,10 @@ $faq = [
             1. Rukun, Wajib, dan Sunnah Umroh,
             2. Cara menggunakan kain ihram,
             3. Informasi terkait perjalanan yang didalamnya mencakup rencana program perjalanan, prakiraan cuaca, dan barang bawaan yang perlu diperhatikan."
+    ],
+    [
+        "question" => "Di mana lokasi kantor?",
+        "answer" => "Lokasi kantor kami ada di Jl. Bunga Asoka 49C, Kec. Medan Selayang"
     ]
 
 ];

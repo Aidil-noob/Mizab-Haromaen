@@ -1,11 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between items-center">
-            <h2 class="font-serif text-xl font-bold">Lihat Video</h2>
-            <a href="{{ route('admin.testimoni.index') }}" class="button button--primary">
-                <x-lucide-step-back/> Kembali
-            </a>
-        </div>
+        <x-breadcrumb>
+            <x-breadcrumb-item href="{{ route('dashboard') }}" label="Dasbor"/>
+            <x-breadcrumb-item href="{{ route('admin.testimoni.index') }}" label="Video Testimoni"/>
+            <x-breadcrumb-item aria-current="page" label="Lihat Video Testimoni"/>
+        </x-breadcrumb>
     </x-slot>
 
     <div class="py-8">

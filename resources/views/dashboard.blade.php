@@ -4,7 +4,6 @@
             <h2 class="font-serif text-xl font-bold">
                 {{ __('Dasbor') }}
             </h2>
-
         </div>
     </x-slot>
 
@@ -15,24 +14,26 @@
                     href="{{ route('admin.paket.index') }}"
                     class="card p-6 hover:shadow-lg transition"
                 >
+                    <x-lucide-list class="size-7"/>
                     <h3 class="font-serif text-lg font-semibold mb-1">
                         Kelola Paket Umroh
                     </h3>
                     <p class="text-sm opacity-70">
                         {{ \App\Models\Paket::count() }}
-                        paket terdaftar
+                        paket umroh terdaftar
                     </p>
                 </a>
                 <a
                     href="{{ route('admin.testimoni.index') }}"
                     class="card p-6 hover:shadow-lg transition"
                 >
+                    <x-lucide-list-video class="size-7"/>
                     <h3 class="font-serif text-lg font-semibold mb-1">
-                        Kelola Testimoni
+                        Kelola Video Testimoni
                     </h3>
                     <p class="text-sm opacity-70">
                         {{ \App\Models\Testimoni::count() }}
-                        testimoni terdaftar
+                        video testimoni terunggah
                     </p>
                 </a>
             </div>

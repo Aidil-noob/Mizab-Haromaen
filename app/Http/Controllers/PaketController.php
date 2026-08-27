@@ -20,15 +20,37 @@ class PaketController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_paket' => 'required',
-            'nama_hotel_madinah' => 'required',
-            'nama_hotel_makkah' => 'required',
+        $validate = $request->validate([
+            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'rating' => 'required|integer',
             'harga' => 'required|integer'
+        ],
+        [
+            'nama_paket.required' => 'Nama paket wajib diisi!',
+            'nama_paket.string' => 'Nama paket hanya boleh menggunakan huruf!',
+            'nama_paket.regex' => 'Nama paket hanya boleh menggunakan huruf!',
+            'nama_hotel_madinah.required' => 'Nama hotel madinah wajib diisi!',
+            'nama_hotel_madinah.string' => 'Nama hotel madinah hanya boleh menggunakan huruf',
+            'nama_hotel_madinah.regex' => 'Nama hotel madinah hanya boleh menggunakan huruf',
+            'nama_hotel_makkah.required' => 'Nama hotel makkah wajib diisi!',
+            'nama_hotel_makkah.string' => 'Nama hotel makkah hanya boleh menggunakan huruf',
+            'nama_hotel_makkah.regex' => 'Nama hotel makkah hanya boleh menggunakan huruf',
+            'rating.required' => 'Rating hotel wajib diisi!',
+            'rating.integer' => 'Rating hotel hanya boleh berupa angka!',
+            'harga.required' => 'Harga paket wajib diisi!',
+            'harga.integer' => 'Harga paket hanya boleh berupa angka!'
+        ],
+        [
+            'nama_paket' => 'Nama Paket Umroh',
+            'nama_hotel_madinah' => 'Nama Hotel Madinah',
+            'nama_hotel_makkah' => 'Nama Hotel Makkah',
+            'rating' => 'Kualitas Fasilitas Hotel',
+            'harga' => 'Harga Paket Umroh'
         ]);
         
-        Paket::create($request->all());
+        Paket::create($validate);
 
         return redirect()
             ->route('admin.paket.index')
@@ -42,15 +64,37 @@ class PaketController extends Controller
 
     public function update(Request $request, Paket $paket)
     {
-        $request->validate([
-            'nama_paket' => 'required',
-            'nama_hotel_madinah' => 'required',
-            'nama_hotel_makkah' => 'required',
+        $validate = $request->validate([
+            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'rating' => 'required|integer',
             'harga' => 'required|integer'
+        ],
+        [
+            'nama_paket.required' => 'Nama paket wajib diisi!',
+            'nama_paket.string' => 'Nama paket hanya boleh menggunakan huruf!',
+            'nama_paket.regex' => 'Nama paket hanya boleh menggunakan huruf!',
+            'nama_hotel_madinah.required' => 'Nama hotel madinah wajib diisi!',
+            'nama_hotel_madinah.string' => 'Nama hotel madinah hanya boleh menggunakan huruf',
+            'nama_hotel_madinah.regex' => 'Nama hotel madinah hanya boleh menggunakan huruf',
+            'nama_hotel_makkah.required' => 'Nama hotel makkah wajib diisi!',
+            'nama_hotel_makkah.string' => 'Nama hotel makkah hanya boleh menggunakan huruf',
+            'nama_hotel_makkah.regex' => 'Nama hotel makkah hanya boleh menggunakan huruf',
+            'rating.required' => 'Rating hotel wajib diisi!',
+            'rating.integer' => 'Rating hotel hanya boleh berupa angka!',
+            'harga.required' => 'Harga paket wajib diisi!',
+            'harga.integer' => 'Harga paket hanya boleh berupa angka!'
+        ],
+        [
+            'nama_paket' => 'Nama Paket Umroh',
+            'nama_hotel_madinah' => 'Nama Hotel Madinah',
+            'nama_hotel_makkah' => 'Nama Hotel Makkah',
+            'rating' => 'Kualitas Fasilitas Hotel',
+            'harga' => 'Harga Paket Umroh'
         ]);
 
-        $paket->update($request->all());
+        $paket->update($validate);
 
         return redirect()
             ->route('admin.paket.index')

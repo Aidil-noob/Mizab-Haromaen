@@ -1,11 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between items-center">     
-            <h2 class="font-serif text-xl font-bold">
-                Kelola Paket Umroh
-            </h2>
-            <a href="{{ route('admin.paket.create') }}" class="button button--primary">
-                + Tambah Paket
+        <div class="flex flex-row justify-between items-center">
+            <x-breadcrumb>
+                <x-breadcrumb-item href="{{ route('dashboard') }}" label="Dasbor"/>
+                <x-breadcrumb-item label="Paket Umroh" aria-current="page"/>
+            </x-breadcrumb>
+            <a href="{{ route('admin.paket.create') }}" class="button button--primary button--xl">
+                <x-lucide-plus/> Tambah Paket Umroh
             </a>
         </div>
     </x-slot>

@@ -29,9 +29,18 @@ class TestimoniController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['url' => 'required']);
+        $validate = $request->validate([
+            'url' => 'required|url'
+        ],
+        [
+            'url.required' => 'Tautan wajib diisi!',
+            'url.url' => 'Tautan tidak valid!'
+        ],
+        [
+            'url' => 'Tautan'
+        ]);
 
-        Testimoni::create($request->all());
+        Testimoni::create($validate);
 
         return redirect()
             ->route('admin.testimoni.index')
@@ -59,9 +68,18 @@ class TestimoniController extends Controller
      */
     public function update(Request $request, Testimoni $testimoni)
     {
-        $request->validate(['url' => 'required']);
+        $validate = $request->validate([
+            'url' => 'required|url'
+        ],
+        [
+            'url.required' => 'Tautan wajib diisi!',
+            'url.url' => 'Tautan tidak valid!'
+        ],
+        [
+            'url' => 'Tautan'
+        ]);
 
-        $paket->update($request->all());
+        $paket->update($validate);
 
         return redirect()
             ->route('admin.testimoni.index')

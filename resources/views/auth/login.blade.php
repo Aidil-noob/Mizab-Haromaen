@@ -12,7 +12,7 @@
                 <span class="input-group__text"><x-lucide-at-sign/></span>
                 <x-text-input id="email" class="w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </x-input-group>
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-error :message="$errors->first('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
@@ -25,7 +25,7 @@
                                 name="password"
                                 required autocomplete="current-password" />
             </x-input-group>
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :message="$errors->first('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->

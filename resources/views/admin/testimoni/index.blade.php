@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
-            <h2 class="font-serif text-xl font-bold">
-                Kelola Video Testimoni
-            </h2>
+            <x-breadcrumb>
+                <x-breadcrumb-item href="{{ route('dashboard') }}" label="Dasbor"/>
+                <x-breadcrumb-item aria-current="page" label="Video Testimoni"/>
+            </x-breadcrumb>
             <a
                 href="{{ route('admin.testimoni.create') }}"
-                class="button button--primary"
+                class="button button--primary button--xl"
             >
-                + Tambah Video
+                <x-lucide-plus/> Tambah Video Testimoni
             </a>
         </div>
     </x-slot>

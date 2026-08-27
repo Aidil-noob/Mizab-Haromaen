@@ -1,9 +1,5 @@
-@props(['messages'])
+@props(['message'])
 
-@if ($messages)
-    <ul {{ $attributes->merge(['class' => 'text-sm text-red-600 space-y-1']) }}>
-        @foreach ((array) $messages as $message)
-            <li>{{ $message }}</li>
-        @endforeach
-    </ul>
-@endif
+<div {{ $attributes->merge(['class' => 'field__error flex gap-2 items-center']) }}>
+    <x-lucide-octagon-alert class="size-4 {{ $message ? 'inline' : 'hidden' }}"/> {{ $message }}
+</div>

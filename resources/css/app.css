@@ -47,10 +47,6 @@
         --button-color: var(--color-primary-emphasis);
     }
 
-    .card__header {
-        background-color: var(--color-primary-foreground);
-    }
-
     .textarea {
         --textarea-border-color: var(--color-primary);
         --textarea-border-width: 2px;
@@ -65,5 +61,9 @@
     .accordion {
         --accordion-item-open-bg: #FBFCFC;
         --accordion-trigger-bg-hover: #ffffffd8;
+    }
+
+    .breadcrumb {
+        --breadcrumb-divider: '❯';
     }
 }

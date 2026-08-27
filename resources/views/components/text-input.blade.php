@@ -1,3 +1,5 @@
-@props(['disabled' => false])
+@props(['error' => false])
 
-<input @disabled($disabled) {{ $attributes->merge(['class' => 'input']) }}>
+<input {{ $attributes->merge([
+    'class' => 'input', 'aria-invalid' => $error ? 'true' : 'false'
+]) }}/>

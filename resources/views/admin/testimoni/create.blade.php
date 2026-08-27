@@ -1,28 +1,28 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between items-center">
-            <h2 class="font-serif text-xl font-bold">Tambah Video Testimoni</h2>
-            <a href="{{ route('admin.testimoni.index') }}" class="button button--primary">
-                <x-lucide-step-back/> Kembali
-            </a>
-        </div>
+        <x-breadcrumb>
+            <x-breadcrumb-item href="{{ route('dashboard') }}" label="Dasbor"/>
+            <x-breadcrumb-item href="{{ route('admin.testimoni.index') }}" label="Video Testimoni"/>
+            <x-breadcrumb-item aria-current="page" label="Tambah Video Testimoni"/>
+        </x-breadcrumb>
     </x-slot>
 
     <div class="py-8">
         <div class="card mx-auto max-w-md">
-            <form action="{{ route('admin.testimoni.store') }}" method="POST" class="flex flex-col gap-4">
+            <form action="{{ route('admin.testimoni.store') }}" method="POST" class="flex flex-col gap-4" novalidate>
                 @csrf
     
-                <div class="card__header rounded-t-md">                   
-                    <label class="field__label text-[var(--color-primary-emphasis)]">URL</label>
-                    <input
+                <div class="card__header flex-wrap py-2 rounded-t-md bg-(--color-primary)">                   
+                    <x-input-label class="text-(--color-primary-emphasis)" :value="__('Tautan')"/>
+                    <x-text-input
                         type="url"
                         name="url"
-                        class="input"
+                        :error="$errors->has('url') ? true : false"
                         value="{{ old('url') }}"
-                        required 
                         id="input-url"
+                        aria-describedby="urlError"
                     />
+                    <x-input-error id="urlError" :message="$errors->first('url')"/>
                 </div>
 
                 <div class="card__body items-center">
@@ -30,12 +30,8 @@
                 </div>
                     
                 <div class="card__footer flex-row-reverse">
-                    <button type="submit" class="button button--primary">
-                        Unggah
-                    </button>
-                    <button type="reset" class="button button--danger">
-                        Batal
-                    </button>
+                    <x-primary-button>Unggah</x-primary-button>
+                    <x-danger-button>Batal</x-danger-button>
                 </div>
             </form> 
         </div>
@@ -48,7 +44,7 @@
         function TampilkanReel(url) 
         {
             // jangan tampilkan jika tidak ada url 
-            if (!url || !url.trim()) 
+            if (!url) 
             {
                 return reel.innerHTML = `
                     <div class="empty-state empty-state--sm">

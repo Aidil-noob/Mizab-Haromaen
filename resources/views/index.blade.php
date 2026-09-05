@@ -373,7 +373,7 @@
         <section class="page__section w-full" id="faq">
             <div class="card">
                 <div class="card__header">
-                    <h3 class="card__title text-[#FBFCFC] md:text-md lg:text-lg xl:text-xl">
+                    <h3 class="card__title md:text-md lg:text-lg xl:text-xl">
                         Pertanyaan yang sering diajukan
                     </h3>
                 </div>

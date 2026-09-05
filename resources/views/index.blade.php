@@ -89,7 +89,7 @@
                     </li>
                 </ul>
                 <a
-                    href="{{ route('login') }}" 
+                    href="{{ route('login') }}"
                     class="button button--primary lg:p-6"
                 >
                     Admin
@@ -110,6 +110,7 @@
                         <source
                             src="{{ asset('storage/aset/hero-c.webm') }}"
                             type="video/webm"
+                            fetchpriority="high"
                         />
                     </video>
 
@@ -184,7 +185,12 @@
                                 {{ $p->nama_paket }}
                             </div>
                             <hr class="separator my-4"/>
-                            <img src="{{asset('storage/' . $h)}}" class="rounded" />
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="{{asset('storage/' . $h)}}"
+                                class="rounded"
+                            />
                             <h3 class="font-bold text-start text-xl lg:text-2xl">Rincian Paket</h3>
                             <div class="grid grid-cols-2 gap-x-15 gap-y-6 lg:gap-y-10">
                                 {{-- nama hotel --}}
@@ -450,7 +456,7 @@
                 }
             });
         }
-        
+
         const observerOptions = {
             root: null,
             // area pembatas di tengah viewport untuk mendeteksi section / header yang terlihat

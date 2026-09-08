@@ -88,12 +88,6 @@
                         <a class="navbar__button" href="#faq">FAQ</a>
                     </li>
                 </ul>
-                <a
-                    href="{{ route('login') }}"
-                    class="button button--primary lg:p-6"
-                >
-                    Admin
-                </a>
             </div>
         </nav>
         <header id="beranda" class="page__header -mt-6 -mx-4">

@@ -76,7 +76,7 @@
             <div class="navbar__menu" data-state="closed">
                 <ul class="navbar__nav">
                     <li>
-                        <a href="#beranda" class="navbar__button" data-state="active">Beranda</a>
+                        <a href="#beranda" class="navbar__button">Beranda</a>
                     </li>
                     <li>
                         <a class="navbar__button" href="#paket">Paket Umroh</a>
@@ -176,7 +176,7 @@
                     DAFTAR PAKET UMROH
                 </h2>
             </div>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                 @foreach ($umroh as [$p, $h])
                     <div class="card min-h-full">
                         <div class="card__body">

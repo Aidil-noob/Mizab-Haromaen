@@ -14,10 +14,12 @@ export default defineConfig(({ mode }) => {
             tailwindcss(),
         ],
         server: {
+            /*
             host: '0.0.0.0',
             hmr: {
                 host: env.VITE_HMR_HOST || 'localhost',
             },
+            */
             watch: {
                 ignored: ['**/vendor/**', '**/storage/**', '**/node_modules/**'],
             },

@@ -21,15 +21,16 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s+]+$/',
             'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'rating' => 'required|integer',
-            'harga' => 'required|integer'
+            'harga' => 'required|integer',
+            'tgl_keberangkatan' => 'required|date'
         ],
         [
             'nama_paket.required' => 'Nama paket wajib diisi!',
-            'nama_paket.string' => 'Nama paket hanya boleh menggunakan huruf!',
+            'nama_paket.string' => 'Nama paket hanya boleh menggunakan string',
             'nama_paket.regex' => 'Nama paket hanya boleh menggunakan huruf!',
             'nama_hotel_madinah.required' => 'Nama hotel madinah wajib diisi!',
             'nama_hotel_madinah.string' => 'Nama hotel madinah hanya boleh menggunakan huruf',
@@ -40,14 +41,17 @@ class PaketController extends Controller
             'rating.required' => 'Rating hotel wajib diisi!',
             'rating.integer' => 'Rating hotel hanya boleh berupa angka!',
             'harga.required' => 'Harga paket wajib diisi!',
-            'harga.integer' => 'Harga paket hanya boleh berupa angka!'
+            'harga.integer' => 'Harga paket hanya boleh berupa angka!',
+            'tgl_keberangkatan.required' => 'Tanggal keberangkatan wajib dimasukkan!',
+            'tgl_keberangkatan.date' => 'Tanggal keberangkatan tidak valid'
         ],
         [
             'nama_paket' => 'Nama Paket Umroh',
             'nama_hotel_madinah' => 'Nama Hotel Madinah',
             'nama_hotel_makkah' => 'Nama Hotel Makkah',
             'rating' => 'Kualitas Fasilitas Hotel',
-            'harga' => 'Harga Paket Umroh'
+            'harga' => 'Harga Paket Umroh',
+            'tgl_keberangkatan' => 'Tanggal Keberangkatan'
         ]);
         
         Paket::create($validate);
@@ -65,11 +69,12 @@ class PaketController extends Controller
     public function update(Request $request, Paket $paket)
     {
         $validate = $request->validate([
-            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s+]+$/',
             'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'rating' => 'required|integer',
-            'harga' => 'required|integer'
+            'harga' => 'required|integer',
+            'tgl_keberangkatan' => 'required|date'
         ],
         [
             'nama_paket.required' => 'Nama paket wajib diisi!',
@@ -84,14 +89,17 @@ class PaketController extends Controller
             'rating.required' => 'Rating hotel wajib diisi!',
             'rating.integer' => 'Rating hotel hanya boleh berupa angka!',
             'harga.required' => 'Harga paket wajib diisi!',
-            'harga.integer' => 'Harga paket hanya boleh berupa angka!'
+            'harga.integer' => 'Harga paket hanya boleh berupa angka!',
+            'tgl_keberangkatan.required' => 'Tanggal keberangkatan wajib dimasukkan!',
+            'tgl_keberangkatan.date' => 'Tanggal keberangkatan tidak valid'
         ],
         [
             'nama_paket' => 'Nama Paket Umroh',
             'nama_hotel_madinah' => 'Nama Hotel Madinah',
             'nama_hotel_makkah' => 'Nama Hotel Makkah',
             'rating' => 'Kualitas Fasilitas Hotel',
-            'harga' => 'Harga Paket Umroh'
+            'harga' => 'Harga Paket Umroh',
+            'tgl_keberangkatan' => 'Tanggal Keberangkatan'
         ]);
 
         $paket->update($validate);

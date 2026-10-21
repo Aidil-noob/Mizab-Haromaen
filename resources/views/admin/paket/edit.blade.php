@@ -73,7 +73,19 @@
                         />
                     </x-input-group>
                     <x-input-error id="hargaError" :message="$errors->first('harga')"/>
-                    </div>
+               </div>
+
+               <div class="field">
+                  <x-input-label :value="__('Tanggal Berangkat')"/>
+                  <x-text-input 
+                     type="date"
+                     name="tgl_keberangkatan"
+                     value="{{ old('tgl_keberangkatan', $paket->tgl_keberangkatan) }}"
+                     :error="$errors->has('tgl_keberangkatan') ? true : false"
+                     aria-describedby="berangkatError"
+                  />
+                  <x-input-error id="berangkatError" :message="$errors->first('tgl_keberangkatan')" />
+               </div>
 
                 <div class="field flex-row-reverse">
                     <x-primary-button>Perbarui</x-primary-button>

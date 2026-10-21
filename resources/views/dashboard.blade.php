@@ -4,7 +4,7 @@
             <h2 class="font-serif lg:text-3xl text-xl font-bold">
                 {{ __('Dasbor') }}
             </h2>
-            <h2 class="font-sans text-xl font-bold lg:text-3xl">{{ auth()->user()->name }}</h2>
+            <h2 class="font-sans text-xl font-bold lg:text-xl">{{ auth()->user()->name }}</h2>
         </div>
     </x-slot>
 

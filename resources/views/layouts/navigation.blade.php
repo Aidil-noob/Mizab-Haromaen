@@ -1,4 +1,4 @@
-<nav class="navbar" data-stisla-navbar>
+<nav class="navbar bg-white" data-stisla-navbar>
     <a class="navbar__brand" href="{{ route('dashboard') }}">
         <img class="h-auto w-50" src="{{ asset('storage/ikon/IMG_7540.webp') }}"/>
     </a>
@@ -37,7 +37,7 @@
                         data-state="active"
                     @endif
                 >
-                    Video Testimoni
+                    Testimoni
                 </a>
             </li>
         </ul>

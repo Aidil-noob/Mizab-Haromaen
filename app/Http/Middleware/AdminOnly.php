@@ -4,23 +4,15 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class AdminOnly
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        $allowedEmails = explode(',', env('ADMIN_EMAILS', ''));
-        
-        if (!in_array($request->user()->email, $allowedEmails)) {
-            abort(403, 'Akses Ditolak');
+        if (! in_array($request->user()->email, config('admin.emails'))) {
+            abort(403, 'Akses Ditolak.');
         }
-        
+
         return $next($request);
     }
 }

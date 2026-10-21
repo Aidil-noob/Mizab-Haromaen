@@ -35,11 +35,12 @@
                     <table class="table table--align-middle table--hover">
                         <thead class="table__head--alt">
                             <tr>
-                                <th scope="col">Nama Paket</th>
-                                <th scope="col">Hotel Madinah</th>
-                                <th scope="col">Hotel Makkah</th>
+                                <th scope="col" class="min-w-30">Nama Paket</th>
+                                <th scope="col" class="min-w-30">Hotel Madinah</th>
+                                <th scope="col" class="min-w-30">Hotel Makkah</th>
                                 <th scope="col">Rating</th>
-                                <th scope="col">Harga</th>
+                                <th scope="col" class="min-w-30">Harga</th>
+                                <th scope="col" class="min-w-30">Tanggal Berangkat</th>
                                 <th scope="col" class="text-end">Aksi</th>
                             </tr>
                         </thead> 
@@ -51,6 +52,7 @@
                                 <td>{{ $p->nama_hotel_makkah }}</td>
                                 <td>{{ $p->rating }}</td>
                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                               <td>{{ \Carbon\Carbon::parse($p->tgl_keberangkatan)->format('d-m-Y') }}</td>
                                 <td class="text-end">
                                     <div class="button-group button-group--lg" role="group" aria-label="kelola data"> 
 

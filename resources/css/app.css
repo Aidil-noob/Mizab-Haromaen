@@ -8,20 +8,21 @@
 @theme {
     --font-sans: 'Lora', serif; /* font utama */
     --font-mono: 'Rubik', sans-serif;
+   --color-white: #fbfcfc;
     --color-primary: oklch(0.7474 0.1029 74.98); /* warna utama coklat susu */
     --color-surface-2: oklch(0.7474 0.1029 74.98); /* warna utama coklat susu */
     --color-primary-foreground: oklch(0.5315 0.1121 74.98); /* warna teks coklat emas */
     --color-surface: oklch(0.94 0.03 80); /* warna untuk elemen coklat muda */
     --color-primary-emphasis: oklch(1 0 0);
-    --color-background: oklch(0.9057 0.0565 86.84 / 96%);
 }
 
 @layer components {
     .navbar {
         --navbar-bg: var(--color-primary); /* latar belakang navbar */
-        --navbar-button-bg-active: var(--color-primary-foreground); /* warna latar belakang tombol navigasi yang dipilih */
-        --navbar-button-bg-hover: var(--color-primary-foreground); /* warna latar belakang tombol navigasi yang dipilih */
+        --navbar-button-bg-active: var(--color-surface-2); /* warna latar belakang tombol navigasi yang dipilih */
+        --navbar-button-bg-hover: var(--color-surface-2); /* warna latar belakang tombol navigasi yang dipilih */
         --navbar-button-color-active: var(--color-primary-emphasis); /* warna teks tombol navigasi yang dipilih */
+        --navbar-button-color-hover: var(--color-primary-emphasis); /* warna teks tombol navigasi yang dipilih */
     }
 
     .media {

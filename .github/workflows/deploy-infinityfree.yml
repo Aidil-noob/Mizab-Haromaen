@@ -1,0 +1,99 @@
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-infinityfree
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & deploy via FTP
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, fileinfo, pdo_mysql, bcmath, ctype, json, openssl, tokenizer, xml
+          coverage: none
+
+      - name: Install Composer dependencies (production)
+        run: composer install --no-dev --prefer-dist --no-progress --no-interaction
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Build frontend assets (Vite)
+        run: |
+          npm ci
+          npm run build
+
+      # InfinityFree silently drops PHP files > 1MB (often the optimized autoloader)
+      - name: Shrink Composer autoloader
+        run: composer dump-autoload --no-dev --optimize=false
+
+      - name: Clear local caches before upload
+        run: |
+          find bootstrap/cache -type f ! -name '.gitignore' -delete
+          find storage/framework/cache -type f ! -name '.gitignore' -delete
+          find storage/framework/sessions -type f ! -name '.gitignore' -delete
+          find storage/framework/views -type f ! -name '.gitignore' -delete
+          find storage/logs -type f ! -name '.gitignore' -delete
+          rm -rf node_modules
+
+      - name: Write production .env from secret
+        env:
+          ENV_FILE: ${{ secrets.ENV_FILE }}
+        run: |
+          if [ -z "$ENV_FILE" ]; then
+            echo "::error::Secret ENV_FILE is empty or not set. Add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          printf '%s\n' "$ENV_FILE" > .env
+
+      # Persists which files were already uploaded so later deploys only send diffs
+      - name: Restore FTP deploy state
+        uses: actions/cache@v4
+        with:
+          path: .ftp-deploy-deploy.state
+          key: ftp-deploy-state-${{ github.run_id }}
+          restore-keys: |
+            ftp-deploy-state-
+
+      - name: Deploy to InfinityFree via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          timeout: 86400000
+          log-level: standard
+          exclude: |
+            .git/**
+            .github/**
+            node_modules/**
+            tests/**
+            database/**
+            *.md
+            *.zip
+            .env.example
+            .editorconfig
+            .npmrc
+            vite.config.js
+            package.json
+            package-lock.json
+            phpunit.xml
+            test.php

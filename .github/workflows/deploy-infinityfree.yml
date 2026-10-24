@@ -42,7 +42,9 @@ jobs:
 
       # InfinityFree silently drops PHP files > 1MB (often the optimized autoloader)
       - name: Shrink Composer autoloader
-        run: composer dump-autoload --no-dev --optimize=false
+        run: |
+          composer config optimize-autoloader false
+          composer dump-autoload --no-dev
 
       - name: Clear local caches before upload
         run: |

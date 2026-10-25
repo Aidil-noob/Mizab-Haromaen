@@ -226,12 +226,14 @@
                                 {{ $p->nama_paket }}
                             </div>
                             <hr class="separator my-4"/>
-                            <img
-                                loading="lazy"
-                                decoding="async"
-                                src="{{asset('storage/' . $h)}}"
-                                class="rounded"
-                            />
+                            @if ($h)
+                                <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="{{asset('storage/' . $h)}}"
+                                    class="rounded"
+                                />
+                            @endif
                             <h3 class="font-bold text-start text-xl lg:text-2xl">Rincian Paket</h3>
                             <div class="grid grid-cols-2 gap-x-15 gap-y-6 lg:gap-y-10">
                                 {{-- nama hotel --}}

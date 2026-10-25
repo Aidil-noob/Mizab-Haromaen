@@ -9,7 +9,7 @@
 
     <div class="py-8">
         <div class="page container mx-auto px-4 max-w-lg">
-            <form action="{{ route('admin.paket.store') }}" method="POST" class="flex flex-col gap-4" novalidate>
+            <form action="{{ route('admin.paket.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4" novalidate>
                 @csrf
 
                 <div class="field">
@@ -22,6 +22,19 @@
                         value="{{ old('nama_paket') }}"
                     />
                     <x-input-error id="paketError" :message="$errors->first('nama_paket')"/>
+                </div>
+
+                <div class="field">
+                    <x-input-label :value="__('Gambar Paket')"/>
+                    <x-text-input
+                        type="file"
+                        name="gambar"
+                        accept="image/jpeg,image/png,image/webp"
+                        :error="$errors->has('gambar') ? true : false"
+                        aria-describedby="gambarError"
+                    />
+                    <p class="text-sm text-muted-foreground mt-1">Format: JPG, PNG, atau WebP. Maksimal 2 MB.</p>
+                    <x-input-error id="gambarError" :message="$errors->first('gambar')"/>
                 </div>
 
                 <div class="field">

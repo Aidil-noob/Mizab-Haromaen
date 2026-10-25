@@ -35,6 +35,7 @@
                     <table class="table table--align-middle table--hover">
                         <thead class="table__head--alt">
                             <tr>
+                                <th scope="col">Gambar</th>
                                 <th scope="col">Nama Paket</th>
                                 <th scope="col">Hotel Madinah</th>
                                 <th scope="col">Hotel Makkah</th>
@@ -46,6 +47,17 @@
                         <tbody>
                             @foreach ($paket as $p)
                             <tr>
+                                <td>
+                                    @if ($p->gambar)
+                                        <img
+                                            src="{{ Storage::disk('public')->url($p->gambar) }}"
+                                            alt="{{ $p->nama_paket }}"
+                                            class="w-16 h-12 object-cover rounded"
+                                        />
+                                    @else
+                                        <span class="text-muted-foreground">—</span>
+                                    @endif
+                                </td>
                                 <td class="py-2">{{ $p->nama_paket }}</td>
                                 <td>{{ $p->nama_hotel_madinah }}</td>
                                 <td>{{ $p->nama_hotel_makkah }}</td>

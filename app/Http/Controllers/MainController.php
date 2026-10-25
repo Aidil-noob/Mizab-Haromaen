@@ -16,7 +16,7 @@ class MainController extends Controller
         $testimoni = Testimoni::all();
         $gambarHotel = Storage::disk('public')->files('hotel');
 
-        $umroh = $pkt->zip($gambarHotel);
+        $umroh = $pkt->values()->map(fn ($p, $i) => [$p, $p->gambar ?: ($gambarHotel[$i] ?? null)]);
         
         return view('index', compact('paket', 'testimoni', 'umroh'));
     }

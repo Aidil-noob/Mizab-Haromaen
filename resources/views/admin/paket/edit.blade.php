@@ -9,7 +9,7 @@
 
     <div class="py-8">
         <div class="page container mx-auto px-4 max-w-lg">
-            <form action="{{ route('admin.paket.update', $paket) }}" method="POST" class="flex flex-col gap-4">
+            <form action="{{ route('admin.paket.update', $paket) }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
                 @csrf @method('PUT')
 
                 <div class="field">
@@ -22,6 +22,31 @@
                         value="{{ old('nama_paket', $paket->nama_paket) }}"
                     />
                     <x-input-error id="paketError" :message="$errors->first('nama_paket')"/>
+                </div>
+
+                <div class="field">
+                    <x-input-label :value="__('Gambar Paket')"/>
+                    @if ($paket->gambar)
+                        <img
+                            src="{{ Storage::disk('public')->url($paket->gambar) }}"
+                            alt="{{ $paket->nama_paket }}"
+                            class="mb-2 rounded-lg w-40 h-28 object-cover"
+                        />
+                    @endif
+                    <x-text-input
+                        type="file"
+                        name="gambar"
+                        accept="image/jpeg,image/png,image/webp"
+                        :error="$errors->has('gambar') ? true : false"
+                        aria-describedby="gambarError"
+                    />
+                    <p class="text-sm text-muted-foreground mt-1">
+                        Format: JPG, PNG, atau WebP. Maksimal 2 MB.
+                        @if ($paket->gambar)
+                            Biarkan kosong jika gambar tidak diganti.
+                        @endif
+                    </p>
+                    <x-input-error id="gambarError" :message="$errors->first('gambar')"/>
                 </div>
 
                 <div class="field">

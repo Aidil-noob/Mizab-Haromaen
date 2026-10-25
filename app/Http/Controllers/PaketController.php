@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Paket;
 
 class PaketController extends Controller
@@ -22,6 +23,7 @@ class PaketController extends Controller
     {
         $validate = $request->validate([
             'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'gambar' => 'required|image|mimes:jpeg,jpg,png,webp|max:2048',
             'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'rating' => 'required|integer',
@@ -31,6 +33,10 @@ class PaketController extends Controller
             'nama_paket.required' => 'Nama paket wajib diisi!',
             'nama_paket.string' => 'Nama paket hanya boleh menggunakan huruf!',
             'nama_paket.regex' => 'Nama paket hanya boleh menggunakan huruf!',
+            'gambar.required' => 'Gambar paket wajib diupload!',
+            'gambar.image' => 'File harus berupa gambar!',
+            'gambar.mimes' => 'Gambar harus berformat jpeg, jpg, png, atau webp!',
+            'gambar.max' => 'Ukuran gambar maksimal 2MB!',
             'nama_hotel_madinah.required' => 'Nama hotel madinah wajib diisi!',
             'nama_hotel_madinah.string' => 'Nama hotel madinah hanya boleh menggunakan huruf',
             'nama_hotel_madinah.regex' => 'Nama hotel madinah hanya boleh menggunakan huruf',
@@ -44,12 +50,15 @@ class PaketController extends Controller
         ],
         [
             'nama_paket' => 'Nama Paket Umroh',
+            'gambar' => 'Gambar Paket',
             'nama_hotel_madinah' => 'Nama Hotel Madinah',
             'nama_hotel_makkah' => 'Nama Hotel Makkah',
             'rating' => 'Kualitas Fasilitas Hotel',
             'harga' => 'Harga Paket Umroh'
         ]);
-        
+
+        $validate['gambar'] = $request->file('gambar')->store('paket', 'public');
+
         Paket::create($validate);
 
         return redirect()
@@ -66,6 +75,7 @@ class PaketController extends Controller
     {
         $validate = $request->validate([
             'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'gambar' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
             'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'rating' => 'required|integer',
@@ -75,6 +85,9 @@ class PaketController extends Controller
             'nama_paket.required' => 'Nama paket wajib diisi!',
             'nama_paket.string' => 'Nama paket hanya boleh menggunakan huruf!',
             'nama_paket.regex' => 'Nama paket hanya boleh menggunakan huruf!',
+            'gambar.image' => 'File harus berupa gambar!',
+            'gambar.mimes' => 'Gambar harus berformat jpeg, jpg, png, atau webp!',
+            'gambar.max' => 'Ukuran gambar maksimal 2MB!',
             'nama_hotel_madinah.required' => 'Nama hotel madinah wajib diisi!',
             'nama_hotel_madinah.string' => 'Nama hotel madinah hanya boleh menggunakan huruf',
             'nama_hotel_madinah.regex' => 'Nama hotel madinah hanya boleh menggunakan huruf',
@@ -88,11 +101,21 @@ class PaketController extends Controller
         ],
         [
             'nama_paket' => 'Nama Paket Umroh',
+            'gambar' => 'Gambar Paket',
             'nama_hotel_madinah' => 'Nama Hotel Madinah',
             'nama_hotel_makkah' => 'Nama Hotel Makkah',
             'rating' => 'Kualitas Fasilitas Hotel',
             'harga' => 'Harga Paket Umroh'
         ]);
+
+        if ($request->hasFile('gambar')) {
+            if ($paket->gambar) {
+                Storage::disk('public')->delete($paket->gambar);
+            }
+            $validate['gambar'] = $request->file('gambar')->store('paket', 'public');
+        } else {
+            unset($validate['gambar']);
+        }
 
         $paket->update($validate);
 
@@ -103,6 +126,10 @@ class PaketController extends Controller
 
     public function destroy(Paket $paket)
     {
+        if ($paket->gambar) {
+            Storage::disk('public')->delete($paket->gambar);
+        }
+
         $paket->delete();
 
         return redirect()

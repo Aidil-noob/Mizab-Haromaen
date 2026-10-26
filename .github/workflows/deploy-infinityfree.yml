@@ -20,6 +20,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependency npm
+        run: npm ci
+
+      - name: Build aset frontend
+        run: npm run build
+
       - name: Install LFTP
         run: sudo apt-get update && sudo apt-get install -y lftp
 
@@ -61,6 +73,13 @@ jobs:
           if [ -z "${FTP_SERVER:-}" ] || [ -z "${FTP_USERNAME:-}" ] || [ -z "${FTP_PASSWORD:-}" ]; then
             echo "Secret FTP_SERVER / FTP_USERNAME / FTP_PASSWORD belum lengkap."
             exit 1
+          fi
+
+          # aset hasil build selalu ikut karena public/build tidak dilacak git
+          if [ -d public/build ]; then
+            find public/build -type f -print0 | while IFS= read -r -d '' f; do
+              printf 'A\0%s\0' "$f"
+            done >> "$RUNNER_TEMP/changes.bin"
           fi
 
           puts_file=$(mktemp)

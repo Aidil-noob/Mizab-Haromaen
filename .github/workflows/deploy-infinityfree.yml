@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      full:
+        description: 'Full sync: upload semua file tertrack (untuk pemulihan setelah run gagal)'
+        type: boolean
+        default: false
 
 jobs:
   push:
@@ -21,9 +26,19 @@ jobs:
       - name: Kumpulkan daftar file yang berubah
         env:
           BEFORE: ${{ github.event.before }}
+          FULL: ${{ inputs.full }}
         run: |
           set -euo pipefail
           : "${RUNNER_TEMP:=/tmp}"
+
+          # mode full sync: semua file tertrack jadi "A" (upload), tanpa diff
+          if [ "${FULL:-false}" = "true" ]; then
+            echo "Mode full sync: semua file tertrack akan diupload."
+            git ls-files -z | while IFS= read -r -d '' f; do
+              printf 'A\0%s\0' "$f"
+            done > "$RUNNER_TEMP/changes.bin"
+            exit 0
+          fi
 
           # fallback: run manual / push pertama / history force-push
           if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then

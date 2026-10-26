@@ -18,7 +18,27 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+            <x-navbar
+                :brand-href="route('dashboard')"
+                :items="[
+                    ['href' => route('dashboard'), 'label' => 'Dasbor', 'active' => request()->routeIs('dashboard')],
+                    ['href' => route('admin.paket.index'), 'label' => 'Paket Umroh', 'active' => request()->routeIs('admin.paket.*')],
+                    ['href' => route('admin.testimoni.index'), 'label' => 'Video Testimoni', 'active' => request()->routeIs('admin.testimoni.*')],
+                ]"
+            >
+                <x-slot:action>
+                    <button
+                        type="submit"
+                        class="button button--danger lg:p-6"
+                        form="logout"
+                    >
+                        Keluar
+                    </button>
+                    <form id="logout" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
+                </x-slot:action>
+            </x-navbar>
 
             <!-- Page Heading -->
             @isset($header)

@@ -91,10 +91,15 @@ jobs:
             echo "user $FTP_USERNAME $FTP_PASSWORD"
             echo "set net:timeout 30"
             echo "set net:max-retries 3"
-            echo "set cmd:fail-exit yes"
+            # server InfinityFree membalas 550 "File exists" saat mkdir -p, padahal
+            # direktorinya sudah ada -> errornya ditolerir dulu supaya tidak membatalkan
+            # sesi. Upload & hapus tetap strict (fail-exit yes) sehingga tetap gagal
+            # kalau file benar-benar tidak terkirim.
+            echo "set cmd:fail-exit no"
             sort -u "$dirs_file" | while IFS= read -r dir; do
               printf 'mkdir -p "/htdocs/%s"\n' "$dir"
             done
+            echo "set cmd:fail-exit yes"
             cat "$puts_file"
             cat "$dels_file"
             echo "bye"

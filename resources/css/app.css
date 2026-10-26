@@ -8,6 +8,7 @@
 @theme {
     --font-sans: 'Lora', serif; /* font utama */
     --font-mono: 'Rubik', sans-serif;
+   --color-white: #fbfcfc;
     --color-primary: oklch(0.7474 0.1029 74.98); /* warna utama coklat susu */
     --color-surface-2: oklch(0.7474 0.1029 74.98); /* warna utama coklat susu */
     --color-primary-foreground: oklch(0.5315 0.1121 74.98); /* warna teks coklat emas */
@@ -18,9 +19,9 @@
 
 @layer components {
     .navbar {
-        --navbar-bg: var(--color-primary); /* latar belakang navbar */
-        --navbar-button-bg-active: var(--color-primary-foreground); /* warna latar belakang tombol navigasi yang dipilih */
-        --navbar-button-bg-hover: var(--color-primary-foreground); /* warna latar belakang tombol navigasi yang dipilih */
+        --navbar-bg: var(--color-white); /* latar belakang navbar */
+        --navbar-button-bg-active: var(--color-primary); /* warna latar belakang tombol navigasi yang dipilih */
+        --navbar-button-bg-hover: var(--color-primary); /* warna latar belakang tombol navigasi yang dipilih */
         --navbar-button-color-active: var(--color-primary-emphasis); /* warna teks tombol navigasi yang dipilih */
     }
 
@@ -67,4 +68,17 @@
     .breadcrumb {
         --breadcrumb-divider: '❯';
     }
+
+   .page {
+      background-color: var(--color-white);
+   }
+
+   .combobox {
+      --combobox-border-color: var(--color-primary);
+      --combobox-item-color-active: #121212;
+   }
+
+   .input {
+      --input-border-color: var(--color-primary);
+   }
 }

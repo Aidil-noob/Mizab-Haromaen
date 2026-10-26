@@ -25,6 +25,18 @@
                 </div>
 
                 <div class="field">
+                    <x-input-label :value="__('Tanggal Berangkat')"/>
+                    <x-text-input
+                        type="date"
+                        name="tgl_keberangkatan"
+                        value="{{ old('tgl_keberangkatan', $paket->tgl_keberangkatan) }}"
+                        :error="$errors->has('tgl_keberangkatan') ? true : false"
+                        aria-describedby="tglError"
+                    />
+                    <x-input-error id="tglError" :message="$errors->first('tgl_keberangkatan')"/>
+                </div>
+
+                <div class="field">
                     <x-input-label :value="__('Gambar Paket')"/>
                     @if ($paket->gambar)
                         <img
@@ -83,6 +95,18 @@
                         aria-describedby="ratingError"
                     />
                     <x-input-error id="ratingError" :message="$errors->first('rating')"/>
+                </div>
+
+                <div class="field">
+                    <x-input-label :value="__('Sisa Seat')"/>
+                    <x-text-input 
+                        type="number"
+                        name="seat" 
+                        value="{{ old('seat', $paket->seat) }}"
+                        :error="$errors->has('seat') ? true : false"
+                        aria-describedby="seatError"
+                    />
+                    <x-input-error id="seatError" :message="$errors->first('seat')"/>
                 </div>
 
                 <div class="field">

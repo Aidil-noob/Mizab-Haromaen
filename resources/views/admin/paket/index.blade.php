@@ -37,9 +37,11 @@
                             <tr>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Nama Paket</th>
+                                <th scope="col">Tanggal Berangkat</th>
                                 <th scope="col">Hotel Madinah</th>
                                 <th scope="col">Hotel Makkah</th>
                                 <th scope="col">Rating</th>
+                                <th scope="col">Seat</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col" class="text-end">Aksi</th>
                             </tr>
@@ -59,9 +61,15 @@
                                     @endif
                                 </td>
                                 <td class="py-2">{{ $p->nama_paket }}</td>
+                                <td>
+                                    {{ $p->tgl_keberangkatan
+                                        ? \Carbon\Carbon::parse($p->tgl_keberangkatan)->format('d-m-Y')
+                                        : '—' }}
+                                </td>
                                 <td>{{ $p->nama_hotel_madinah }}</td>
                                 <td>{{ $p->nama_hotel_makkah }}</td>
                                 <td>{{ $p->rating }}</td>
+                                <td>{{ $p->seat }}</td>
                                 <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                                 <td class="text-end">
                                     <div class="button-group button-group--lg" role="group" aria-label="kelola data"> 

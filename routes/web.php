@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [MainController::class, 'index']);
 
-
-
 Route::middleware(['auth', 'admin.only'])
     ->group(function () {
         Route::get('/dashboard', function () {

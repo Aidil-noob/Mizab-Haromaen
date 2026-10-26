@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Paket;
 use App\Models\Testimoni;
-use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -14,10 +13,9 @@ class MainController extends Controller
         $paket = Paket::all();
         $pkt = Paket::all();
         $testimoni = Testimoni::all();
-        $gambarHotel = Storage::disk('public')->files('hotel');
 
-        $umroh = $pkt->values()->map(fn ($p, $i) => [$p, $p->gambar ?: ($gambarHotel[$i] ?? null)]);
-        
+        $umroh = $pkt->values()->map(fn ($p) => [$p, $p->gambar]);
+
         return view('index', compact('paket', 'testimoni', 'umroh'));
     }
 }

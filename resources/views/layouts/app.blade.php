@@ -17,7 +17,7 @@
         <script async src="//www.instagram.com/embed.js"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen" style="background:#fbfcfc;">
             <x-navbar
                 :brand-href="route('dashboard')"
                 :items="[

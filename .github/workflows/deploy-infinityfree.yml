@@ -1,38 +1,113 @@
-name: Deploy Latest Comic Commit
+name: Push Changed Files to InfinityFree
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Install LFTP
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Upload changed files to InfinityFree
+      - name: Kumpulkan daftar file yang berubah
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          : "${RUNNER_TEMP:=/tmp}"
+
+          # fallback: run manual / push pertama / history force-push
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            BEFORE=$(git rev-parse HEAD~1 2>/dev/null || git rev-list --max-parents=0 HEAD)
+          fi
+
+          echo "Membandingkan $BEFORE -> $GITHUB_SHA"
+          git diff --name-status --no-renames "$BEFORE" "$GITHUB_SHA" || true
+          git diff --name-status --no-renames -z "$BEFORE" "$GITHUB_SHA" > "$RUNNER_TEMP/changes.bin"
+
+      - name: Upload file yang berubah ke InfinityFree
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-          
-          lftp -f "
-          open ftp://$FTP_SERVER
-          user $FTP_USERNAME $FTP_PASSWORD
-          " <<EOF
-          $(for file in $CHANGED_FILES; do
-            if [ -f "$file" ]; then
-              echo "put $file -o /htdocs/folder/tujuan/$file"
+          set -euo pipefail
+          : "${RUNNER_TEMP:=/tmp}"
+
+          if [ -z "${FTP_SERVER:-}" ] || [ -z "${FTP_USERNAME:-}" ] || [ -z "${FTP_PASSWORD:-}" ]; then
+            echo "Secret FTP_SERVER / FTP_USERNAME / FTP_PASSWORD belum lengkap."
+            exit 1
+          fi
+
+          puts_file=$(mktemp)
+          dels_file=$(mktemp)
+          dirs_file=$(mktemp)
+
+          nput=0
+          ndel=0
+          nskip=0
+
+          # format -z: STATUS \0 PATH \0 STATUS \0 PATH ...
+          while IFS= read -r -d '' status && IFS= read -r -d '' file; do
+            case "$file" in
+              .git/*|.github/*|tests/*|database/*|node_modules/*|*.md|.env*|package.json|package-lock.json|vite.config.js|postcss.config.js)
+                nskip=$((nskip + 1))
+                continue
+                ;;
+            esac
+
+            if [ "$status" = "D" ]; then
+              printf 'glob rm -f "/htdocs/%s"\n' "$file" >> "$dels_file"
+              ndel=$((ndel + 1))
+            else
+              dir=$(dirname -- "$file")
+              if [ "$dir" != "." ]; then
+                printf '%s\n' "$dir" >> "$dirs_file"
+              fi
+              printf 'put "%s" -o "/htdocs/%s"\n' "$file" "$file" >> "$puts_file"
+              nput=$((nput + 1))
             fi
-          done)
-          bye
-          EOF
+          done < "$RUNNER_TEMP/changes.bin"
+
+          echo "upload: $nput, hapus: $ndel, dilewati: $nskip"
+
+          if [ "$nput" -eq 0 ] && [ "$ndel" -eq 0 ]; then
+            echo "Tidak ada file untuk dikirim."
+            exit 0
+          fi
+
+          cmd_file=$(mktemp)
+          {
+            echo "open ftp://$FTP_SERVER"
+            echo "user $FTP_USERNAME $FTP_PASSWORD"
+            echo "set net:timeout 30"
+            echo "set net:max-retries 3"
+            echo "set cmd:fail-exit yes"
+            sort -u "$dirs_file" | while IFS= read -r dir; do
+              printf 'mkdir -p "/htdocs/%s"\n' "$dir"
+            done
+            cat "$puts_file"
+            cat "$dels_file"
+            echo "bye"
+          } > "$cmd_file"
+
+          for attempt in 1 2 3; do
+            if lftp -f "$cmd_file"; then
+              echo "Upload berhasil (percobaan ke-$attempt)."
+              exit 0
+            fi
+            echo "Upload gagal (percobaan ke-$attempt), mengulang dalam 20 detik..."
+            sleep 20
+          done
+
+          echo "Upload gagal setelah 3 percobaan."
+          exit 1

@@ -22,7 +22,7 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s\+]+$/',
             'gambar' => 'required|image|mimes:jpeg,jpg,png,webp|max:2048',
             'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
@@ -83,7 +83,7 @@ class PaketController extends Controller
     public function update(Request $request, Paket $paket)
     {
         $validate = $request->validate([
-            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nama_paket' => 'required|string|regex:/^[a-zA-Z\s\+]+$/',
             'gambar' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048',
             'nama_hotel_madinah' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'nama_hotel_makkah' => 'required|string|regex:/^[a-zA-Z\s]+$/',

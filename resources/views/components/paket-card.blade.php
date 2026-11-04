@@ -45,6 +45,10 @@
                 <span class="font-bold block text-lg lg:text-2xl">13 Hari</span>
             </div>
             <div>
+               <span class="font-medium text-lg lg:text-2xl">Tanggal Keberangkatan</span>
+               <span class="font-bold block text-lg lg:text-2xl">{{ $paket->tgl_keberangkatan }}</span>
+            </div>
+            <div>
                 <span class="font-medium text-lg lg:text-2xl">Sisa Seat</span>
                 <span
                    class="font-bold block text-lg lg:text-2xl"
@@ -57,6 +61,7 @@
             class="button py-7 pr-1 pl-7 button--primary button--outline button--xl font-semibold lg:text-2xl"
             style="--button-radius:50px; --button-color:black;"
             data-stisla-dialog-trigger="dlg-{{$paket->id}}"
+            @if($paket->seat == 0) disabled @endif
          >
             Daftar Sekarang
                <span

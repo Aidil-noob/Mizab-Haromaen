@@ -17,7 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
         <script>eruda.init();</script>
     </head>
-    <body class="font-sans text-gray-900 antialiased backdrop-blur-[350px]">
+    <body class="font-sans text-gray-900 antialiased bg-white">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
                 <a href="/">

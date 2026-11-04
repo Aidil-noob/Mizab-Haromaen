@@ -15,12 +15,17 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $allowedEmails = explode(',', env('ADMIN_EMAILS', ''));
-        
-        if (!in_array($request->user()->email, $allowedEmails)) {
+        $user = $request->user();
+
+        $allowedEmails = array_map(
+            'trim',
+            array_filter(explode(',', env('ADMIN_EMAILS', '')))
+        );
+
+        if (!($user->is_admin ?? false) && !in_array($user->email, $allowedEmails)) {
             abort(403, 'Akses Ditolak');
         }
-        
+
         return $next($request);
     }
 }

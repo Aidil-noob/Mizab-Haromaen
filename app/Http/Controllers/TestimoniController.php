@@ -79,7 +79,7 @@ class TestimoniController extends Controller
             'url' => 'Tautan'
         ]);
 
-        $paket->update($validate);
+        $testimoni->update($validate);
 
         return redirect()
             ->route('admin.testimoni.index')

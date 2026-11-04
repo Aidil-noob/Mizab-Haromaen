@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,9 @@ Route::middleware(['auth', 'admin.only'])
             ->group(function () {
                 Route::resource('paket', PaketController::class);
                 Route::resource('testimoni', TestimoniController::class);
+                Route::resource('akun', UserController::class)
+                    ->except(['show'])
+                    ->middleware('super.admin');
             });
     });
 

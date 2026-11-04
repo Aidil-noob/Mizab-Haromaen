@@ -56,12 +56,16 @@
                 >{{ $paket->seat }} Seat</span>
             </div>
       </div>
+      @php
+         $lewat = $paket->tgl_keberangkatan
+            && \Carbon\Carbon::parse($paket->tgl_keberangkatan)->endOfDay()->isPast();
+      @endphp
       <div class="flex justify-end my-2">
          <button
             class="button py-7 pr-1 pl-7 button--primary button--outline button--xl font-semibold lg:text-2xl"
             style="--button-radius:50px; --button-color:black;"
             data-stisla-dialog-trigger="dlg-{{$paket->id}}"
-            @if($paket->seat == 0) disabled @endif
+            @if($paket->seat == 0 || $lewat) disabled @endif
          >
             Daftar Sekarang
                <span

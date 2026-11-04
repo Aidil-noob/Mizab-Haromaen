@@ -4,7 +4,11 @@
     <title>Mizab Haromaen</title>
     <link rel="preconnect" href="https://www.chatbase.co" crossorigin/>
     <link rel="dns-prefetch" href="https://www.chatbase.co"/>
-
+    <script>
+       if (window.location.hostname === "mizab-haromaen.infinityfreeapp.com") {
+          window.location.href = "https://mizab.my.id" + window.location.pathname;
+      }
+    </script>
     <script>
         (function () {
             if (!window.chatbase || window.chatbase("getState") !== "initialized") {

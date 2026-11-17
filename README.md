@@ -43,15 +43,28 @@ Website Profil Perusahaan PT Mizab Haromaen yang berfungsi untuk nenampilkan inf
    '''bash
    git clone https://github.com/Aidil-noob/Mizab-Haromaen
    cd Mizab-Haromaen
-2. Install PHP Dependencies
-   composer Install
-3. Install Node.js & build assets
+   '''
+3. Install PHP Dependencies
+   '''bash
+   composer install
+   '''
+5. Install Node.js & build assets
+   '''bash
    npm run build && npm run dev
-4. Setup environment
+   '''
+7. Setup environment
+   '''bash
    cp .env.example .env
-5. Bikin kunci aplikasi
+   '''
+9. Bikin kunci aplikasi
+   '''bash
    php artisan key:generate
-6. Atur koneksi database di file .env, lalu jalankan migrasi
+   '''
+11. Atur koneksi database di file .env, lalu jalankan migrasi
+   '''bash
    php artisan migrate
-7. Jalanin server local
+   '''
+13. Jalanin server local
+   '''bash
    php artisan serve
+   ''''
